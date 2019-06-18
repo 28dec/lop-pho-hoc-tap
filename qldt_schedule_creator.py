@@ -295,7 +295,7 @@ def get_all_point_from_html_source(rps):
 		row_diem = term
 		term_list_element = []
 		term_report = []
-		for i in range(0, 40):
+		for i in range(0, 41):
 			try:
 				
 				row_diem = row_diem.find_next('tr')
