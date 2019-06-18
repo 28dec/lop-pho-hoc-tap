@@ -14,7 +14,7 @@
     <script src="JS/dialog.js" type="text/javascript"></script>
     <script src="JS/checkdate.js" type="text/javascript"></script>
     <title>
-	Cổng Thông Tin Đào Tạo-Cơ Sở Miền Bắc (version ktuyen: 2019.01.16)
+	Cổng Thông Tin Đào Tạo-Cơ Sở Miền Bắc (version kt190515)
 </title>
     <script type="text/javascript" language="javascript">
         function ShowMess()
@@ -25,12 +25,35 @@
             else if (url.indexOf("err=sessionreuse", 0) > 0)
                 alert('Vui lòng tắt và mở lại trình duyệt!');
         }
+
+        $(function () {
+            if (typeof AjaxPro != 'undefined' && AjaxPro && AjaxPro.Request && AjaxPro.Request.prototype) {
+                AjaxPro.Request.prototype.doStateChange = function () {
+                    this.onStateChanged(this.xmlHttp.readyState, this);
+                    if (this.xmlHttp.readyState != 4 || !this.isRunning) {
+                        return;
+                    }
+                    this.duration = new Date().getTime() - this.__start;
+                    if (this.timeoutTimer != null) {
+                        clearTimeout(this.timeoutTimer);
+                    }
+                    var res = this.getEmptyRes();
+                    if (this.xmlHttp.status == 200 && (this.xmlHttp.statusText == "OK" || !this.xmlHttp.statusText)) {
+                        res = this.createResponse(res);
+                    } else {
+                        res = this.createResponse(res, true);
+                        res.error = { Message: this.xmlHttp.statusText, Type: "ConnectFailure", Status: this.xmlHttp.status };
+                    }
+                    this.endRequest(res);
+                };
+            }
+        });
     </script>   
-<link href="/WebResource.axd?d=We1xxkxE0WKe855rlV518V6bZ9tqOgwMjVh1QYXUtjuuNMdnSeJdlQG-nMmCrt9Kbr-Ba-9bAZEft_pYKFNSG3cq_r4w-80Wpyxb7vHmtI1i4oZtaD_MUwmDlvekWnxbQhD2cEDX9QyMaFi3XCVsPcQFt5sYh1nRQjBRmT872gB0DkFf0&amp;t=636854981340000000" rel="stylesheet" type="text/css" /><link href="App_Themes/Standard/Standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/StyleSheet.css" type="text/css" rel="stylesheet" /></head>
+<link href="/WebResource.axd?d=We1xxkxE0WKe855rlV518V6bZ9tqOgwMjVh1QYXUtjuuNMdnSeJdlQG-nMmCrt9Kbr-Ba-9bAZEft_pYKFNSG3cq_r4w-80Wpyxb7vHmtI1i4oZtaD_MUwmDlvekWnxbQhD2cEDX9QyMaFi3XCVsPcQFt5sYh1nRQjBRmT872gB0DkFf0&amp;t=636941368860000000" rel="stylesheet" type="text/css" /><link href="App_Themes/Standard/Standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/StyleSheet.css" type="text/css" rel="stylesheet" /></head>
 
 <body background="App_Themes/Standard/Images/background.png" onload="ShowMess()">
-    <form name="aspnetForm" method="post" action="default.aspx?page=thoikhoabieu&amp;sta=0&amp;id=B15DCCN318" id="aspnetForm" enctype="multipart/form-data">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+    <form name="aspnetForm" method="post" action="default.aspx?page=xemdiemthi" id="aspnetForm" enctype="multipart/form-data">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTMxNjc3NTM3NQ9kFgJmD2QWAgIDD2QWCAIDD2QWBGYPZBYCAgEPZBYMZg8PFgYeCUZvcmVDb2xvcgp4HgRUZXh0BS5DaMOgbyBi4bqhbiAgTmd1eeG7hW4gSG/DoG5nIExvbmcgKEIxNURDQ04zMTgpHgRfIVNCAgRkZAIBDw8WCB8BBRFWaWV3IGFubm91bmNlbWVudB8ACngfAgIEHgdWaXNpYmxlZ2RkAgIPDxYGHwAKeB8CAgQfA2dkZAIDDw8WCB8BBQ9DaGFuZ2UgcGFzc3dvcmQfAAp4HwICBB8DZ2RkAgQPDxYGHwAKeB8CAgQfA2dkZAIFDw8WBh8BBQRFeGl0HwAKeB8CAgRkZAIBD2QWAgIBD2QWDGYPDxYGHwAKeB8BBS5DaMOgbyBi4bqhbiAgTmd1eeG7hW4gSG/DoG5nIExvbmcgKEIxNURDQ04zMTgpHwICBGRkAgEPDxYIHwEFEVZpZXcgYW5ub3VuY2VtZW50HwAKeB8CAgQfA2dkZAICDw8WBh8ACngfAgIEHwNnZGQCAw8PFggfAQUPQ2hhbmdlIHBhc3N3b3JkHwAKeB8CAgQfA2dkZAIEDw8WBh8ACngfAgIEHwNnZGQCBQ8PFgYfAQUERXhpdB8ACngfAgIEZGQCBQ9kFooBAgEPDxYEHghDc3NDbGFzcwUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFCUhvbWUgcGFnZWRkAgMPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBRNUZWFjaGluZyBhc3Nlc3NtZW50ZGQCBQ8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFE0NvdXJzZSByZWdpc3RyYXRpb25kZAIHDw8WBh8EBQhvdXQtbWVudR8CAgIfA2hkZAIJDw8WBB8EBQhvdXQtbWVudR8CAgJkFgJmDw8WAh8BBRlWaWV3IGV4YW1pbmF0aW9uIHNjaGVkdWxlZGQCCw8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFHFZpZXcgcmUtZXhhbWluYXRpb24gc2NoZWR1bGVkZAINDw8WBh8EBQhvdXQtbWVudR8CAgIfA2hkFgICAQ8PFgIfAQUZVmlldyBleGFtaW5hdGlvbiBzY2hlZHVsZWRkAg8PDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBQ5WaWV3IHRpbWV0YWJsZWRkAhEPDxYGHwQFCG91dC1tZW51HwICAh8DaGRkAhMPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBQ9WaWV3IHNjaG9vbCBmZWVkZAIVDw8WBh8EBQhvdXQtbWVudR8CAgIfA2hkZAIXDw8WBB8EBQlvdmVyLW1lbnUfAgICZBYCAgEPDxYCHwEFEVZpZXcgc3R1ZGVudCBtYXJrZGQCGQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCGw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCHQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCHw8PFgYfBAUIb3V0LW1lbnUfAgICHwNnZBYCAgEPDxYCHwEFE1ZpZXcgY291cnNlIHByb2dyYW1kZAIhDw8WBh8EBQhvdXQtbWVudR8CAgIfA2dkFgICAQ8PFgIfAQUaVmlldyBwcmVyZXF1aXNpdGUgc3ViamVjdHNkZAIjDw8WBB8EBQhvdXQtbWVudR8CAgJkZAIlDw8WBB8EBQhvdXQtbWVudR8CAgJkZAInDw8WBB8EBQhvdXQtbWVudR8CAgJkFgICAQ8PFgIfAQUXVXBkYXRlIHBlcnNvbmFsIHByb2ZpbGVkZAIpDw8WBB8EBQhvdXQtbWVudR8CAgJkFgICAQ8PFgIfAQUQU3R1ZGVudCBjb21tZW50c2RkAisPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBRdMaXN0IG9mIGZ1bmN0aW9uYWxpdGllc2RkAi0PDxYGHwQFCG91dC1tZW51HwICAh8DaGQWAmYPDxYCHwEFF1VwZGF0ZSBjdXJyaWN1bHVtIHZpdGFlZGQCLw8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFB01hbmFnZXJkZAIxDw8WBB8EBQhvdXQtbWVudR8CAgJkFgICAQ8PFgIfAQUSQXNzZXNzbWVudCByZWNvcmRzZGQCMw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCNQ8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFEU9ubGluZSBhc3Nlc3NtZW50ZGQCNw8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFG1JlLWV4YW1pbmF0aW9uIHJlZ2lzdHJhdGlvbmRkAjkPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh4LUG9zdEJhY2tVcmwFJGh0dHA6Ly92bmV4cHJlc3MubmV0P21hc3Y9QjE1RENDTjMxOGRkAjsPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBSRSZWdpc3RyYXRpb24gb2Ygc3BlY2lhbGl6ZWQgc3ViamVjdHNkZAI9Dw8WBB8EBQhvdXQtbWVudR8CAgJkZAI/Dw8WBB8EBQhvdXQtbWVudR8CAgJkFgICAQ8PFgIfAQUfR3JhZHVhdGlvbiB2ZXJpZmljYXRpb24gcmVzdWx0c2RkAkEPDxYEHwQFCG91dC1tZW51HwICAmRkAkMPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBRpGcmVxdWVudGx5IGFza2VkIHF1ZXN0aW9uc2RkAkUPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBRNUaGVzaXMgcmVnaXN0cmF0aW9uZGQCRw8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFEWxibE5oYXBEaWVtb25saW5lZGQCSQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCSw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCTQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCTw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCUQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCUw8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFMlN0YXRpc3RpYyBvZiBmYWN1bHR5IGFwcHJvdmluZyByZWdpc3RyYXRpb24gcmVzdWx0ZGQCVQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCVw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCWQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCWw8PFgYfBAUIb3V0LW1lbnUfAgICHwNnZGQCXQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCXw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCYQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCYw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCZQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCZw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCaQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCaw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCbQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCbw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCcQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQCcw8PFgQfBAUIb3V0LW1lbnUfAgICZGQCdQ8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFD2xibE5naGlEYXlEYXlCdWRkAncPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBRFsYmxEYW5nS3lOZ2hpUGhlcGRkAnkPDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBQ9sYmxEYW5nS3lDb2lUaGlkZAJ7Dw8WBB8EBQhvdXQtbWVudR8CAgJkFgICAQ8PFgIfAQUQbGJsWGVtTGljaENvaVRoaWRkAn0PDxYEHwQFCG91dC1tZW51HwICAmQWAgIBDw8WAh8BBQ1sYmxOaGFwS1FOQ0tIZGQCfw8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFFmxibERhbmdLeUdpYXlDaHVuZ05oYW5kZAKBAQ8PFgQfBAUIb3V0LW1lbnUfAgICZBYCAgEPDxYCHwEFDGxibENhbU5hbmdTVmRkAoMBDw8WBB8EBQhvdXQtbWVudR8CAgJkZAKFAQ8PFgQfBAUIb3V0LW1lbnUfAgICZGQChwEPDxYEHwQFCG91dC1tZW51HwICAmRkAokBDw8WBB8EBQhvdXQtbWVudR8CAgJkFgICAQ8PFgIfAQURbGJsQmFvQmlldVRob25nS2VkZAIHD2QWAgIBD2QWAmYPZBYKAgUPZBYqAgEPDxYCHwEFDFN0dWRlbnQgY29kZWRkAgMPDxYCHwEFCkIxNURDQ04zMThkZAIFDw8WAh8BBQxTdHVkZW50IG5hbWVkZAIHDw8WAh8BBRROZ3V54buFbiBIb8OgbmcgTG9uZ2RkAgsPDxYCHwEFA05hbWRkAg0PDxYCHwEFDERheSBvZiBiaXJ0aGRkAg8PDxYCHwEFCjI1LzA4LzE5OTZkZAIRDw8WAh8BBQ5QbGFjZSBvZiBiaXJ0aGRkAhMPDxYCHwEFCkLhuq9jIE5pbmhkZAIVDw8WAh8BBQVDbGFzc2RkAhcPDxYCHwEFC0QxNUNOUE01KCApZGQCGQ8PFgIfAQUKRGVwYXJ0bWVudGRkAhsPDxYCHwEFGUPDtG5nIG5naOG7hyBwaOG6p24gbeG7gW1kZAIfDw8WAh8BBQdGYWN1bHR5ZGQCIQ8PFgIfAQUXQ8O0bmcgbmdo4buHIHRow7RuZyB0aW5kZAIjDw8WAh8BBQ9UcmFpbmluZyBzeXN0ZW1kZAIlDw8WAh8BBRfEkOG6oWkgaOG7jWMgY2jDrW5oIHF1eWRkAicPDxYCHwEFBkNvdXJzZWRkAikPDxYCHwEFCTIwMTUtMjAyMGRkAisPDxYCHwEFEEFjYWRlbWljIEFkdmlzb3JkZAItDw8WAh8BZWRkAgkPZBYMAgEPDxYCHwEFElZpZXcgYWxsIHNlbWVzdGVyc2RkAgMPDxYCHwEFLkVudGVyIHNlbWVzdGVyIHRvIHZpZXcgZXhhbSBtYXJrIChFeHA6IDIwMDYxKTpkZAIHDw8WAh8BBQRWaWV3ZGQCCw9kFgICAQ9kFgJmDw8WBB8EBQp2aWV3LXRhYmxlHwICAmRkAg0PDxYCHwEFElZpZXcgYWxsIHNlbWVzdGVyc2RkAhEPDxYCHwEFMyggRGF0YSBoYXMgYmVlbiB1cGxvYWRlZCBpbjogMTY6MzMgRGF0ZSAxOC82LzIwMTkgKWRkAgsPDxYCHwNoZBYEAgMPEGRkFgBkAgUPPCsADQBkAg0PFgIeCWlubmVyaHRtbAUPUFJJTlQgRVhBTSBNQVJLZAIPDw8WAh8BBQlidG5FeHBvcnRkZAIJD2QWCAIBDw8WAh8BBTlDb3B5cmlnaHQgwqkyMDA5IEPGoSBT4bufIE1p4buBbiBC4bqvYy4gUXXhuqNuIGzDvSBi4bufaSBkZAIDDw8WAh8BBQlIb21lIHBhZ2VkZAIFDw8WAh8BBQ5EZXNpZ25lZCBieSBBUWRkAgcPDxYCHwEFCUdvIHRvIHRvcGRkGAIFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYCBTpjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGN0bDAwJE1lc3NhZ2VCb3gxJGltZ0Nsb3NlQnV0dG9uBTFjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGN0bDAwJE1lc3NhZ2VCb3gxJGJ0bk9rBSljdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGN0bDAwJGd2WGVtRGllbQ9nZCQ7+NStjyNSc8C3ydjzZIHIc2iE" />
 
 
 <script type="text/javascript">
@@ -52,19 +75,19 @@
                 var imgType = $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ctl02');
                 if(type.toLowerCase() == 'success'){
                     headerText.innerHTML = 'Successful';
-                    imgType.src = '/WebResource.axd?d=ueZNHdikR8SawKpVsjOg3p78kad0RWg9XgKNm4ZmBF8LjS8vUUsSkQvWm-F8moeZfIGbyoVnbi4VQxECZUYVBi9EqabH-NBR5qgXb02LF73Abu_VbGyhfEdNsWgkvwdeUtfL8Ih6qxaKkB7xCFpTkopjr_DBzShhi6IW1eqLhBxnZdxP0&t=636854981340000000';
+                    imgType.src = '/WebResource.axd?d=ueZNHdikR8SawKpVsjOg3p78kad0RWg9XgKNm4ZmBF8LjS8vUUsSkQvWm-F8moeZfIGbyoVnbi4VQxECZUYVBi9EqabH-NBR5qgXb02LF73Abu_VbGyhfEdNsWgkvwdeUtfL8Ih6qxaKkB7xCFpTkopjr_DBzShhi6IW1eqLhBxnZdxP0&t=636941368860000000';
                 }
                 else if(type.toLowerCase() == 'error'){
                      headerText.innerHTML = 'Error';
-                     imgType.src = '/WebResource.axd?d=wd1HEF4UJoQCwqMCmgH-ViDZTqcNoaCmTwEKb2TZfvMbOx3tSeIaZc3PgWbKWThlWK9aR2d2NqoI_1zD_qxQsujodrEtiyNnUkgjGcsP5Nu5pBD8bA1M2saTx8JTsoG6pMHtIfZrxptkIwtlCsYHvG5W5pLQMdtM_MuuxXuG0puxog8L0&t=636854981340000000';
+                     imgType.src = '/WebResource.axd?d=wd1HEF4UJoQCwqMCmgH-ViDZTqcNoaCmTwEKb2TZfvMbOx3tSeIaZc3PgWbKWThlWK9aR2d2NqoI_1zD_qxQsujodrEtiyNnUkgjGcsP5Nu5pBD8bA1M2saTx8JTsoG6pMHtIfZrxptkIwtlCsYHvG5W5pLQMdtM_MuuxXuG0puxog8L0&t=636941368860000000';
                 }
                 else if(type.toLowerCase() == 'warning'){
                      headerText.innerHTML = 'Warning';
-                     imgType.src = '/WebResource.axd?d=OntmoJqe7pjqeIF85w6t-F1EchMBKlPp4PLJvIHeDWl0sVleSdvs3lbPsErdiq9KYkRDkcwKy9g8E9CNPYSaFm3Va2-yBH6zZrsrFkEnXaKPQd5JQpioiavkbIzxAHJ4ykeaTGyGGLV0TONRLfDfPTEKFufP2mmMsEE68wjhe8YxaZa40&t=636854981340000000';
+                     imgType.src = '/WebResource.axd?d=OntmoJqe7pjqeIF85w6t-F1EchMBKlPp4PLJvIHeDWl0sVleSdvs3lbPsErdiq9KYkRDkcwKy9g8E9CNPYSaFm3Va2-yBH6zZrsrFkEnXaKPQd5JQpioiavkbIzxAHJ4ykeaTGyGGLV0TONRLfDfPTEKFufP2mmMsEE68wjhe8YxaZa40&t=636941368860000000';
                 }
                 else{
                      headerText.innerHTML = 'Information';
-                     imgType.src = '/WebResource.axd?d=OntmoJqe7pjqeIF85w6t-F1EchMBKlPp4PLJvIHeDWl0sVleSdvs3lbPsErdiq9KYkRDkcwKy9g8E9CNPYSaFm3Va2-yBH6zZrsrFkEnXaKPQd5JQpioiavkbIzxAHJ4ykeaTGyGGLV0TONRLfDfPTEKFufP2mmMsEE68wjhe8YxaZa40&t=636854981340000000';
+                     imgType.src = '/WebResource.axd?d=OntmoJqe7pjqeIF85w6t-F1EchMBKlPp4PLJvIHeDWl0sVleSdvs3lbPsErdiq9KYkRDkcwKy9g8E9CNPYSaFm3Va2-yBH6zZrsrFkEnXaKPQd5JQpioiavkbIzxAHJ4ykeaTGyGGLV0TONRLfDfPTEKFufP2mmMsEE68wjhe8YxaZa40&t=636941368860000000';
                 }
                
                 $find('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal').show();
@@ -77,7 +100,6 @@
 <script type="text/javascript" src="/ajaxpro/core.ashx"></script>
 <script type="text/javascript" src="/ajaxpro/converter.ashx"></script>
 <script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.Logout,EduSoft.Web.ashx"></script>
-<script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.ThoiKhoaBieu,EduSoft.Web.ashx"></script>
 <script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.Footer,EduSoft.Web.ashx"></script>
 
 <script src="/ScriptResource.axd?d=cQEGyShy-dS7kws6qYG_sqi3E-kmwZRs69oWT4rAxeWs_376QBIpjdyOE0wCCh7EreRkb8gsolMxTRChg7v_DSQ7csjEGasGVgtCZaC0EtOQ0EijMf6xosmx6uKEyFDcWi6B3gFaQk9LiI0ixtq_Rw6OTIiFLQm6fE2tm6eI_0ZDDZJF0&amp;t=fffffffffa2fd9a5" type="text/javascript"></script>
@@ -102,9 +124,9 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
         
         <table><tr><td>
              
-<div style="background-image:url(Images/bg_heading_thongbao.png)">
+<div style="background-image:url(./MessageFile/banner1.jpg)">
         <table width="1000px"><tr><td height="20px" style="padding-left:50px" valign="bottom" align="right">
-              
+               
 
 <script language="javascript" type="text/javascript">
  
@@ -136,16 +158,16 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
     }
 </script>
 
-<div id="ctl00_Header1_ucLogout_dLog" class="logout" style="text-align: right; margin-bottom:0px">
+<div id="ctl00_Header1_Logout1_dLog" class="logout" style="text-align: right; margin-bottom:0px">
 
     <img src="App_Themes/Standard/Images/US.gif" alt="English" onclick="changeLanguage_click('_us')"
         id="imgUS"  title ="English"/>
     <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese" onclick="changeLanguage_click('_vi')"
         id="imgVi" title="Vietnamese"/>
-<span id="ctl00_Header1_ucLogout_lblNguoiDung" class="Label"><b><font color="#FF3300"></font></b></span>&nbsp;
-    
-    
-    <a id="ctl00_Header1_ucLogout_lbtnLogOut" href="javascript:__doPostBack('ctl00$Header1$ucLogout$lbtnLogOut','')" style="font-family: 'Tahoma', Times, serif"><b><font color="#FF3300" size="2">Đăng Nhập</font></b></a>
+<span id="ctl00_Header1_Logout1_lblNguoiDung" class="Label"><b><font color="MistyRose">Chào bạn  Nguyễn Hoàng Long (B15DCCN318)</font></b></span>&nbsp;<a id="ctl00_Header1_Logout1_lbtnThongBao" href="javascript:__doPostBack('ctl00$Header1$Logout1$lbtnThongBao','')" style="font-family: 'Tahoma', Times, serif"><i><font color="MistyRose" size="2">View announcement</font></i></a><span id="ctl00_Header1_Logout1_lblXiet1" class="Label"><font color="MistyRose"> | </font></span>
+    <a id="ctl00_Header1_Logout1_lbtnChangePass" href="javascript:__doPostBack('ctl00$Header1$Logout1$lbtnChangePass','')" style="font-family: 'Tahoma', Times, serif"><b><font color="MistyRose" size="2">Change password</font></b></a>
+    <span id="ctl00_Header1_Logout1_lblXiet2" class="Label"><font color="MistyRose"> | </font></span>
+    <a id="ctl00_Header1_Logout1_lbtnLogOut" href="javascript:__doPostBack('ctl00$Header1$Logout1$lbtnLogOut','')" style="font-family: 'Tahoma', Times, serif"><b><font color="MistyRose" size="2">Exit</font></b></a>
     &nbsp;<select id="selectFont" style="font-size: 11px; width: 100px; color: #000080;"
         onchange="selectFont_change()">
         <option value="uni">-------Font-------</option>
@@ -179,7 +201,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=gioithieu">
-                        <span id="ctl00_menu_lblTrangChu" class="Label">TRANG CHỦ</span></a>
+                        <span id="ctl00_menu_lblTrangChu" class="Label">Home page</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -192,7 +214,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=dkmonhoc">
-                        <span id="ctl00_menu_lblDangKyMonHoc" class="Label">ĐĂNG KÝ MÔN HỌC</span></a>
+                        <span id="ctl00_menu_lblDangKyMonHoc" class="Label">Course registration</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -202,8 +224,8 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
 	
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
-                    <a href="Default.aspx?page=nhapmasv&flag=XemLichThi">
-                        <span id="ctl00_menu_lblXemLichThi" class="Label">XEM LỊCH THI</span></a>
+                    <a href="Default.aspx?page=xemlichthi">
+                        <span id="ctl00_menu_lblXemLichThi" class="Label">View examination schedule</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -214,19 +236,19 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=xemlichthilai">
-                        <span id="ctl00_menu_lblXemLichThiLai" class="Label">XEM LỊCH THI LẠI</span></a>
+                        <span id="ctl00_menu_lblXemLichThiLai" class="Label">View re-examination schedule</span></a>
                 </div>
                 <div class="right"></div>
             
 </div>
             
 
-            <div id="ctl00_menu_thoikhoabieu" class="over-menu">
+            <div id="ctl00_menu_thoikhoabieu" class="out-menu">
 	
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=thoikhoabieu">
-                        <span id="ctl00_menu_lblThoiKhoaBieu" class="Label">XEM TKB</span></a>
+                        <span id="ctl00_menu_lblThoiKhoaBieu" class="Label">View timetable</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -239,17 +261,21 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=xemhocphi">
-                        <span id="ctl00_menu_lblXemHocPhi" class="Label">XEM HỌC PHÍ</span></a>
+                        <span id="ctl00_menu_lblXemHocPhi" class="Label">View school fee</span></a>
                 </div>
                 <div class="right"></div>
             
 </div>
-            <div id="ctl00_menu_xemdiemthi" class="out-menu">
+
+            
+
+
+            <div id="ctl00_menu_xemdiemthi" class="over-menu">
 	
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=xemdiemthi">
-                        <span id="ctl00_menu_lblXemDiem" class="Label">XEM ĐIỂM</span></a>
+                        <span id="ctl00_menu_lblXemDiem" class="Label">View student mark</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -259,9 +285,29 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
 
              
 
-              
-
             
+
+              <div id="ctl00_menu_pnlXemCTDTKhoi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=ctdtkhoisv">
+                        <span id="ctl00_menu_lblXemCTDTKhoiSV" class="Label">View course program</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            <div id="ctl00_menu_pnlXemMonTienQuyet" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemmontienquyet">
+                        <span id="ctl00_menu_lblXemMonTQ" class="Label">View prerequisite subjects</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
 
             
 
@@ -272,7 +318,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=thaydoittcn">
-                        <span id="ctl00_menu_lblThayDoiTTCN" class="Label">SỬA TT CÁ NHÂN</span></a>
+                        <span id="ctl00_menu_lblThayDoiTTCN" class="Label">Update personal profile</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -283,7 +329,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
                 <div class="left"></div>
                 <div class="center" style="white-space: nowrap">
                     <a href="Default.aspx?page=ykiensinhvien">
-                        <span id="ctl00_menu_lblykiensinhvien" class="Label">GÓP Ý KIẾN</span></a>
+                        <span id="ctl00_menu_lblykiensinhvien" class="Label">Student comments</span></a>
                 </div>
                 <div class="right"></div>
             
@@ -388,6 +434,14 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
           
             
 
+
+             
+
+            
+
+            
+
+
             
 
         </div>
@@ -403,7 +457,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
 	<div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelHeader" class="header" style="background: url(Images/header.png);repeat-x 0px -200px;">
 		<div class="msg">
 			<span id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lblPopupHeader" class="Label" style="color:White;font-family:Arial Black;"></span>
-		</div><input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$imgCloseButton" id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_imgCloseButton" class="close" src="/WebResource.axd?d=liERUmgzF99J6oTtMmPH4dMGrEZGapo2bZ_e0ZyNvfiiaewYPM80S8rleIkN6BpsYhWm2m1CQjf6lprtzuL-qSiraJvXLbFsYH8EPZXX09HzJXMkK-o_K5tJ7FggYGa8iz4Yhq_pQlC2fPG-IbVCJZ4Mo5V0Wf2L8j6qf1iP6hPLuklI0&amp;t=636854981340000000" border="0" />
+		</div><input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$imgCloseButton" id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_imgCloseButton" class="close" src="/WebResource.axd?d=liERUmgzF99J6oTtMmPH4dMGrEZGapo2bZ_e0ZyNvfiiaewYPM80S8rleIkN6BpsYhWm2m1CQjf6lprtzuL-qSiraJvXLbFsYH8EPZXX09HzJXMkK-o_K5tJ7FggYGa8iz4Yhq_pQlC2fPG-IbVCJZ4Mo5V0Wf2L8j6qf1iP6hPLuklI0&amp;t=636941368860000000" border="0" />
 	</div><div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelBody" class="body" style="background-color:#E1E5F0;">
 		<div class="body-left" style="background-color:#E1E5F0;">
 			<img id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ctl02" src="" border="0" />
@@ -412,343 +466,173 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
 		</div>
 	</div><div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelFooter" class="footer" style="background-color:#E1E5F0;">
 		<div class="right" style="background-color:#E1E5F0;">
-			<input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$btnOk" id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_btnOk" class="button_small_active" src="/WebResource.axd?d=VXD7jC1x8Of0zAABjPR3m45CZIwQvBEGsZw7XL1nyUARPuX_k-53ZcNJasgXWp6ts3tKBHw6ZyZygun9rkQ6wwJp1BLg3PflnELb7DZkPKu9c9Sp14d1oMCaswKsL2EiGVR_Bb14anIaHCl1cDtGPWIjnMRnyIG9DvNfUxvZjd_8E8Zn0&amp;t=636854981340000000" border="0" />
+			<input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$btnOk" id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_btnOk" class="button_small_active" src="/WebResource.axd?d=VXD7jC1x8Of0zAABjPR3m45CZIwQvBEGsZw7XL1nyUARPuX_k-53ZcNJasgXWp6ts3tKBHw6ZyZygun9rkQ6wwJp1BLg3PflnELb7DZkPKu9c9Sp14d1oMCaswKsL2EiGVR_Bb14anIaHCl1cDtGPWIjnMRnyIG9DvNfUxvZjd_8E8Zn0&amp;t=636941368860000000" border="0" />
 		</div>
 	</div>
 </div></span>
 
-
 <style type="text/css">
-    #dhtmltooltip {
-        position: absolute;
-        padding: 2px;
-        visibility: hidden;
-        z-index: 100;
-        height: 230px;
-    }
 
-    #dhtmltooltip2 {
-        position: absolute;
-        padding: 2px;
-        visibility: hidden;
-        z-index: 101;
-        height: 15px;
-    }
-
-    .style1 {
-        height: 34px;
-    }
-
-    .style2 {
-        height: 23px;
-    }
-</style>
-<div id="dhtmltooltip" style="background-image: url(App_Themes/Standard/Images/tooltip.png); text-align: center"></div>
-<div id="dhtmltooltip2" style="text-align: center"></div>
-<script type="text/javascript">
-
-    var offsetxpoint = -60 //Customize x offset of tooltip
-    var offsetypoint = 20 //Customize y offset of tooltip
-    var ie = document.all
-    var ns6 = document.getElementById && !document.all
-    var enabletip = false
-    if (ie || ns6)
-        var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
-
-    function ietruebody() {
-        return (document.compatMode && document.compatMode != "BackCompat") ? document.documentElement : document.body
-    }
-
-    function ddrivetip(maLop, tenMH, maMH, Thu, TC, Phong, tbd, st, giaoVien, ngaybd, ngaykt, thecolor, thewidth, num, tkbTuan) {
-        if (ns6 || ie) {
-            if (typeof thewidth != "undefined") tipobj.style.width = thewidth + "px"
-            if (typeof thecolor != "undefined" && thecolor != "") tipobj.style.backgroundColor = thecolor;
-
-            var nums = num.split("-");
-            if (tkbTuan == "0") {
-                tipobj.innerHTML = "<table CellPadding='0' border='0' CellSpacing='0' style='text-align:left;font-size:10pt;font-family:tahoma;font-weight:bold'><tr height='20px'><td colspan='3' valign='top'><table><tr><td width='5px'></td><td width='30px' valign='top'><IMG src='App_Themes/Standard/Images/Learning.gif' width='30' height='42'/></td><td align='left'><span style='font-size:11pt ;font-weight:bold;color:#ffffff'>" + tenMH + "</span></td></tr></table></td></tr><tr height='20px'><td width='40px'></td><td colspan='2'> </td></tr><tr><td width='40px'></td><td>" + nums[0] + " :</td><td><span style='color:Teal'>" + maMH + "</span></td></tr><tr><td width='40px'></td><td>" + nums[1] + " :</td><td><span style='color:Teal'>" + tenMH + "</span></td></tr><tr><td width='40px'></td><td width='120px'>" + nums[2] + " :</td><td><span style='color:Teal'>" + Phong + "</span></td></tr><tr><td width='40px'></td><td>" + nums[3] + " :</td><td><span style='color:Teal'>" + Thu + "</span></td></tr><tr><td width='40px'></td><td width='120px'>" + nums[4] + " :</td><td><span style='color:Teal'>" + tbd + "</span></td></tr><tr><td width='40px'></td><td width='120px'>" + nums[5] + " :</td><td><span style='color:Teal'>" + st + "</span></td></tr><tr><td width='40px'></td><td>" + nums[6] + " :</td><td><span style='color:Teal'>" + giaoVien.split('_').join(' ') + "</span></td></tr>  <tr><td width='40px'></td><td>" + nums[9] + " :</td><td><span style='color:Teal'>" + maLop + "</span></td></tr>  <tr><td width='40px'></td><td>" + nums[7] + " :</td><td><span style='color:Teal'>" + ngaybd + "</span><span style='font-style:italic;color:gray'> " + nums[8] + "</span> <span style='color:Teal'>" + ngaykt + "</span></td></tr></table>";
-            }
-            else {
-                tipobj.innerHTML = "<table CellPadding='0' border='0' CellSpacing='0' style='text-align:left;font-size:10pt;font-family:tahoma;font-weight:bold'><tr height='20px'><td colspan='3' valign='top'><table><tr><td width='5px'></td><td width='30px' valign='top'><IMG src='App_Themes/Standard/Images/Learning.gif' width='30' height='42'/></td><td align='left'><span style='font-size:11pt ;font-weight:bold;color:#ffffff'>" + tenMH + "</span></td></tr></table></td></tr><tr height='20px'><td width='40px'></td><td colspan='2'> </td></tr><tr><td width='40px'></td><td>" + nums[0] + " :</td><td><span style='color:Teal'>" + maMH + "</span></td></tr><tr><td width='40px'></td><td>" + nums[1] + " :</td><td><span style='color:Teal'>" + tenMH + "</span></td></tr><tr><td width='40px'></td><td width='120px'>" + nums[2] + " :</td><td><span style='color:Teal'>" + Phong + "</span></td></tr><tr><td width='40px'></td><td>" + nums[3] + " :</td><td><span style='color:Teal'>" + Thu + "</span></td></tr><tr><td width='40px'></td><td width='120px'>" + nums[4] + " :</td><td><span style='color:Teal'>" + tbd + "</span></td></tr><tr><td width='40px'></td><td width='120px'>" + nums[5] + " :</td><td><span style='color:Teal'>" + st + "</span></td></tr><tr><td width='40px'></td><td>" + nums[6] + " :</td><td><span style='color:Teal'>" + giaoVien.split('_').join(' ') + "</span></td></tr>  <tr><td width='40px'></td><td>" + nums[9] + " :</td><td><span style='color:Teal'>" + maLop + "</span></td></tr>  <tr><td width='40px'></td></tr></table>";
-            }
-            enabletip = true
-            return false
-        }
-    }
-    function positiontip(e) {
-        if (enabletip) {
-            var curX = (ns6) ? e.pageX : event.clientX + ietruebody().scrollLeft;
-            var curY = (ns6) ? e.pageY : event.clientY + ietruebody().scrollTop;
-            //Find out how close the mouse is to the corner of the window
-            var rightedge = ie && !window.opera ? ietruebody().clientWidth - event.clientX - offsetxpoint : window.innerWidth - e.clientX - offsetxpoint - 20
-            var bottomedge = ie && !window.opera ? ietruebody().clientHeight - event.clientY - offsetypoint : window.innerHeight - e.clientY - offsetypoint - 20
-
-            var leftedge = (offsetxpoint < 0) ? offsetxpoint * (-1) : -1000
-
-            //if the horizontal distance isn't enough to accomodate the width of the context menu
-            if (rightedge < tipobj.offsetWidth)
-                //move the horizontal position of the menu to the left by it's width
-                tipobj.style.left = ie ? ietruebody().scrollLeft + event.clientX - tipobj.offsetWidth + "px" : window.pageXOffset + e.clientX - tipobj.offsetWidth + "px"
-            else if (curX < leftedge)
-                tipobj.style.left = "5px"
-            else
-                //position the horizontal position of the menu where the mouse is positioned
-                tipobj.style.left = curX + offsetxpoint + "px"
-
-            //same concept with the vertical position
-            if (bottomedge < tipobj.offsetHeight)
-                tipobj.style.top = ie ? ietruebody().scrollTop + event.clientY - tipobj.offsetHeight - offsetypoint + "px" : window.pageYOffset + e.clientY - tipobj.offsetHeight - offsetypoint + "px"
-            else
-                tipobj.style.top = curY + offsetypoint + "px"
-            tipobj.style.visibility = "visible"
-        }
-    }
-    function ddrivetiptuan(NgayGioiHanHoc) {
-        if (ns6 || ie) {
-            var thewidth = 170;
-            if (typeof thewidth != "undefined") tipobj.style.width = thewidth + "px"
-            tipobj = document.getElementById("dhtmltooltip2");
-            tipobj.innerHTML = "<table CellPadding='0' border='0' CellSpacing='0' style='text-align:left;font-size:10pt;font-family:tahoma;background-color:#2E6C92; color:White; '><tr height='20px'><td align='center' >" + NgayGioiHanHoc.split('_').join(' ') + "</td></tr></table>";
-            enabletip = true
-            return false
-        }
-    }
-    function hideddrivetip() {
-        if (ns6 || ie) {
-            enabletip = false
-            tipobj.style.visibility = "hidden"
-            tipobj.style.left = "-1000px"
-            tipobj.style.backgroundColor = ''
-            tipobj.style.width = ''
-        }
-    }
-
-    document.onmousemove = positiontip
-    function showGrv() {
-    }
-    function InTKBClick() {
-        EduSoft.Web.UC.ThoiKhoaBieu.LoadDatatablePrint(LoadDatatablePrint_Callback)
-    }
-    function LoadDatatablePrint_Callback(obj) {
-        window.open('Report/TKBReportView.aspx', '_Blank');
-    }
+     .style1
+     {
+         font-size: large;
+         font-weight: bold;
+     }
+                                                                              .auto-style1 {
+                                                                                  font-weight: bold;
+                                                                              }
+ </style>
 </script>
 
-<div class="navigate-base">
-    <div class="title-base">
-        <div class="title">
-            <table style="width: 480px">
-                <tr>
-                    <td width="10px">
-                        <img src="App_Themes/Standard/Images/icon_04b.gif" />
-                    </td>
-                    <td>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lbltieudetkb" class="Label">Thông Tin Thời Khóa Biểu</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    
-    <table>
-        <tr id="ctl00_ContentPlaceHolder1_ctl00_pnlTTCanhan">
-	<td colspan="2">
-
-                
-
-            </td>
-</tr>
-
-        <tr>
-            <td rowspan="3" width="80px" height="65px">
-                <img src="App_Themes/Standard/Images/icon_lich.png" alt="" width="70px" height="60px" /></td>
-            <td align="left" valign="top">
-                <span id="ctl00_ContentPlaceHolder1_ctl00_lblTT" class="Label"><font size="2">Chọn học kỳ xem TKB</font></span>&nbsp; 
-      <select name="ctl00$ContentPlaceHolder1$ctl00$ddlChonNHHK" id="ctl00_ContentPlaceHolder1_ctl00_ddlChonNHHK" class="DropDown">
-	<option selected="selected" value="20191">Học kỳ 1 - Năm học 2019-2020</option>
-	<option value="20182">Học kỳ 2 - Năm học 2018-2019</option>
-	<option value="20181">Học kỳ 1 - Năm học 2018-2019</option>
-
-</select></td>
-        </tr>
-        <tr>
-            <td align="left" class="style1" style="font-size: 10px">
-                <select name="ctl00$ContentPlaceHolder1$ctl00$ddlLoai" id="ctl00_ContentPlaceHolder1_ctl00_ddlLoai" class="DropDown">
-	<option selected="selected" value="0">TKB theo tuần</option>
-	<option value="2">TKB To&#224;n Trường</option>
-	<option value="1">TKB học kỳ c&#225; nh&#226;n</option>
-
-</select>
-                
-                
-                
-                
-                <select name="ctl00$ContentPlaceHolder1$ctl00$ddlTuan" id="ctl00_ContentPlaceHolder1_ctl00_ddlTuan" class="DropDown">
-	<option selected="selected" value="Tuần 01 [Từ 12/08/2019 -- Đến 18/08/2019]">Tuần 01 [Từ 12/08/2019 -- Đến 18/08/2019]</option>
-	<option value="Tuần 02 [Từ 19/08/2019 -- Đến 25/08/2019]">Tuần 02 [Từ 19/08/2019 -- Đến 25/08/2019]</option>
-	<option value="Tuần 03 [Từ 26/08/2019 -- Đến 01/09/2019]">Tuần 03 [Từ 26/08/2019 -- Đến 01/09/2019]</option>
-	<option value="Tuần 04 [Từ 02/09/2019 -- Đến 08/09/2019]">Tuần 04 [Từ 02/09/2019 -- Đến 08/09/2019]</option>
-	<option value="Tuần 05 [Từ 09/09/2019 -- Đến 15/09/2019]">Tuần 05 [Từ 09/09/2019 -- Đến 15/09/2019]</option>
-	<option value="Tuần 06 [Từ 16/09/2019 -- Đến 22/09/2019]">Tuần 06 [Từ 16/09/2019 -- Đến 22/09/2019]</option>
-	<option value="Tuần 07 [Từ 23/09/2019 -- Đến 29/09/2019]">Tuần 07 [Từ 23/09/2019 -- Đến 29/09/2019]</option>
-	<option value="Tuần 08 [Từ 30/09/2019 -- Đến 06/10/2019]">Tuần 08 [Từ 30/09/2019 -- Đến 06/10/2019]</option>
-	<option value="Tuần 09 [Từ 07/10/2019 -- Đến 13/10/2019]">Tuần 09 [Từ 07/10/2019 -- Đến 13/10/2019]</option>
-	<option value="Tuần 10 [Từ 14/10/2019 -- Đến 20/10/2019]">Tuần 10 [Từ 14/10/2019 -- Đến 20/10/2019]</option>
-	<option value="Tuần 11 [Từ 21/10/2019 -- Đến 27/10/2019]">Tuần 11 [Từ 21/10/2019 -- Đến 27/10/2019]</option>
-	<option value="Tuần 12 [Từ 28/10/2019 -- Đến 03/11/2019]">Tuần 12 [Từ 28/10/2019 -- Đến 03/11/2019]</option>
-	<option value="Tuần 13 [Từ 04/11/2019 -- Đến 10/11/2019]">Tuần 13 [Từ 04/11/2019 -- Đến 10/11/2019]</option>
-	<option value="Tuần 14 [Từ 11/11/2019 -- Đến 17/11/2019]">Tuần 14 [Từ 11/11/2019 -- Đến 17/11/2019]</option>
-	<option value="Tuần 15 [Từ 18/11/2019 -- Đến 24/11/2019]">Tuần 15 [Từ 18/11/2019 -- Đến 24/11/2019]</option>
-	<option value="Tuần 16 [Từ 25/11/2019 -- Đến 01/12/2019]">Tuần 16 [Từ 25/11/2019 -- Đến 01/12/2019]</option>
-	<option value="Tuần 17 [Từ 02/12/2019 -- Đến 08/12/2019]">Tuần 17 [Từ 02/12/2019 -- Đến 08/12/2019]</option>
-	<option value="Tuần 18 [Từ 09/12/2019 -- Đến 15/12/2019]">Tuần 18 [Từ 09/12/2019 -- Đến 15/12/2019]</option>
-	<option value="Tuần 19 [Từ 16/12/2019 -- Đến 22/12/2019]">Tuần 19 [Từ 16/12/2019 -- Đến 22/12/2019]</option>
-	<option value="Tuần 20 [Từ 23/12/2019 -- Đến 29/12/2019]">Tuần 20 [Từ 23/12/2019 -- Đến 29/12/2019]</option>
-	<option value="Tuần 21 [Từ 30/12/2019 -- Đến 05/01/2020]">Tuần 21 [Từ 30/12/2019 -- Đến 05/01/2020]</option>
-	<option value="Tuần 22 [Từ 06/01/2020 -- Đến 12/01/2020]">Tuần 22 [Từ 06/01/2020 -- Đến 12/01/2020]</option>
-	<option value="Tuần 23 [Từ 13/01/2020 -- Đến 19/01/2020]">Tuần 23 [Từ 13/01/2020 -- Đến 19/01/2020]</option>
-
-</select>
-                
-                
-                
-                <input type="button" id="InTKB" onclick="InTKBClick()" value="In TKB"
-                    style="font-size: 11px; height: 26px;" />&nbsp;</td>
+<div class="infor-member" align="center" id="id_form"> 
+    <div class="top"></div>
+    <div class="center">
+        <table cellpadding="0" cellspacing="1">
+            <tr >
+                <td style="text-align: left; width:150px">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_MaSinhVien" class="Label">Student code</span>
+                </td>
+                <td class="Left" style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblMaSinhVien" class="Label"><b>B15DCCN318</b></span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_TenSinhVien" class="Label">Student name</span>
+                </td>
+                <td style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblTenSinhVien" class="Label"><b>Nguyễn Hoàng Long</b></span></td>
+            </tr> 
             
-        </tr>
-        <tr>
-            <td align="left">
-                <span id="ctl00_ContentPlaceHolder1_ctl00_lblNote" class="Label">( Lưu ý: tuần 1 tương ứng với tuần 1 của học kỳ, bắt đầu từ ngày 12/08/2019)  </span>
-                <br />
-                <span id="ctl00_ContentPlaceHolder1_ctl00_lblNote2" class="Label">...</span>
-                &nbsp;</td>
-        </tr>
-    </table>
-
-    <div style="width: 100%">
-        
-    </div>
-    <hr />
-    <div style="width: 100%; text-align: center">
-        <div id="ctl00_ContentPlaceHolder1_ctl00_pnlTKB">
-	
-            <table width="100%"
-                style="text-align: center; border-top: 1px; border-left: 1px; border-right: 1px;">
-                <tr>
-                    <td>
-                        <span class="TextTitle">
-                            <span id="ctl00_ContentPlaceHolder1_ctl00_lbltkb" class="Label">THỜI KHÓA BIỂU</span></span><br />
-                        <span class="TextTitle">
-                            <span id="ctl00_ContentPlaceHolder1_ctl00_lblct" class="Label">(CHÍNH THỨC)</span></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblHocKi" class="Label"><i><font color="Gray">Học Kỳ </font></i></span>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblContentHK" class="Label" style="display:inline-block;"><b><font color="Teal">1</font></b></span>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblNamHoc" class="Label"><i><font color="Gray">Năm </font></i></span><span id="ctl00_ContentPlaceHolder1_ctl00_lblContentNam" class="Label" style="display:inline-block;"><b><font color="Teal">2019 - 2020</font></b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="style2">
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lbltuanthu" class="Label"><i><font color="Gray">Tuần </font></i></span><span id="ctl00_ContentPlaceHolder1_ctl00_lblsotuan" class="Label" style="display:inline-block;"><b><font color="Teal">01</font></b></span><span id="ctl00_ContentPlaceHolder1_ctl00_lbltu" class="Label"><i><font color="Gray"> Từ </font></i></span>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblngay" class="Label" style="display:inline-block;"><b><font color="Teal">12/08/2019</font></b></span>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblden" class="Label"><i><font color="Gray"> Đến </font></i></span><span id="ctl00_ContentPlaceHolder1_ctl00_lblngayden" class="Label" style="display:inline-block;"><b><font color="Teal">18/08/2019</font></b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblMaSV" title="Mã Số" class="Label"><font color="Gray">Mã Số </font></span>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblContentMaSV" class="Label"><b><font color="Teal">B15DCCN318</font></b></span><span id="ctl00_ContentPlaceHolder1_ctl00_lblTenSV" class="Label"><font color="Gray"> Họ Tên </font></span><span id="ctl00_ContentPlaceHolder1_ctl00_lblContentTenSV" class="Label"><b><font color="Teal">Nguyễn Hoàng Long - Ngày sinh:25/08/1996</font></b></span>
-                        <span id="ctl00_ContentPlaceHolder1_ctl00_lblLop" class="Label"><font color="Gray"> - Lớp: </font></span><span id="ctl00_ContentPlaceHolder1_ctl00_lblContentLopSV" class="Label"><b><font color="Teal">D15CNPM5 - Ngành: Công nghệ phần mềm - Khoa: Công nghệ thông tin</font></b></span>
-                        &nbsp;
-                    </td>
-                </tr>
-            </table>
-        
-</div>
-    </div>
-
-
-    
-    <div id="ctl00_ContentPlaceHolder1_ctl00_pnlTuan">
-	
-
-        <table id="ctl00_ContentPlaceHolder1_ctl00_Table1" class="classTable" cellspacing="0" cellpadding="1" bordercolor="#999999" border="0" height="100%" width="100%">
-		<thead>
-			<tr id="ctl00_ContentPlaceHolder1_ctl00_TableRow7">
-				<td id="ctl00_ContentPlaceHolder1_ctl00_TableCell123" align="center" height="18" width="50"></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell124" align="center" bgcolor="#6699CC" height="18" width="100" nowrap="nowrap"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lblt2" class="Label">THỨ HAI</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell125" align="center" bgcolor="#6699CC" width="100"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lblt3" class="Label">THỨ BA</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell126" align="center" bgcolor="#6699CC" width="100"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lblt4" class="Label">THỨ TƯ</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell127" align="center" bgcolor="#6699CC" width="100"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lblt5" class="Label">THỨ NĂM</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell128" align="center" bgcolor="#6699CC" width="100"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lblt6" class="Label">THỨ SÁU</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell129" align="center" bgcolor="#6699CC" width="100"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lblt7" class="Label">THỨ BẢY</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell130" align="center" bgcolor="#6699CC" width="100"><font color="White"><span id="ctl00_ContentPlaceHolder1_ctl00_lbltcn" class="Label">CHỦ NHẬT</span></font></td><td id="ctl00_ContentPlaceHolder1_ctl00_TableCell131" width="50"></td>
-			</tr>
-		</thead><tbody>
-			<tr>
-				<td title="Tiết 1" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 1</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 1" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 1</font></td>
-			</tr><tr>
-				<td title="Tiết 2" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 2</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 2" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 2</font></td>
-			</tr><tr>
-				<td title="Tiết 3" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 3</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 3" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 3</font></td>
-			</tr><tr>
-				<td title="Tiết 4" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 4</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 4" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 4</font></td>
-			</tr><tr>
-				<td title="Tiết 5" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 5</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 5" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 5</font></td>
-			</tr><tr>
-				<td title="Tiết 6" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 6</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 6" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 6</font></td>
-			</tr><tr>
-				<td title="Tiết 7" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 7</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 7" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 7</font></td>
-			</tr><tr>
-				<td title="Tiết 8" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 8</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 8" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 8</font></td>
-			</tr><tr>
-				<td title="Tiết 9" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 9</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 9" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 9</font></td>
-			</tr><tr>
-				<td title="Tiết 10" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 10</font></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td height="22" width="110"></td><td title="Tiết 10" align="center" bgcolor="#6699cc" height="22" width="50"><font color="White">Tiết 10</font></td>
-			</tr><tr>
-				<td height="22"></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">THỨ HAI</font></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">THỨ BA</font></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">THỨ TƯ</font></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">THỨ NĂM</font></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">THỨ SÁU</font></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">THỨ BẢY</font></td><td align="center" bgcolor="#6699cc" height="22" width="110"><font color="White">CHỦ NHẬT</font></td>
-			</tr>
-		</tbody>
-	</table>
-        <table style="width: 100%; text-align: left">
             <tr>
-                <td align="center" width="20px">
-                    <div style="width: 15px; height: 15px; background-color: YellowGreen">
-                    </div>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Label2" class="Label" style="text-align: center">Phái</span>
                 </td>
-                <td>
-                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblmontrung" class="Label">Môn học chỉ trùng một vài tiết</span></td>
-                <td align="left">
-                    <div style="text-align: left">
-                        <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnDt" value="Tuần Đầu" id="ctl00_ContentPlaceHolder1_ctl00_btnDt" class="DefaultButton" />
-                        <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnTrangTruoc" value="Tuần Trước" id="ctl00_ContentPlaceHolder1_ctl00_btnTrangTruoc" disabled="disabled" class="DefaultButton" />
-                        <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnTuanToi" value="Tuần Kế" id="ctl00_ContentPlaceHolder1_ctl00_btnTuanToi" class="DefaultButton" />
-                        <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnTuanCuoi" value="Tuần Cuối" id="ctl00_ContentPlaceHolder1_ctl00_btnTuanCuoi" class="DefaultButton" />
-                    </div>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblPhai" class="Label">Nam</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_NgaySinh" class="Label" style="text-align: center">Day of birth</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblNgaySinh" class="Label">25/08/1996</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_NoiSinh" class="Label" style="text-align: center">Place of birth</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblNoiSinh" class="Label">Bắc Ninh</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Lop" class="Label" style="text-align: center">Class</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblLop" class="Label">D15CNPM5( )</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left" >
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Nganh" class="Label">Department</span>
+                </td>
+                <td class="style1" style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lbNganh" class="Label">Công nghệ phần mềm</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left" >
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Khoa" class="Label">Faculty</span>
+                </td>
+                <td class="style1" style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblKhoa" class="Label">Công nghệ thông tin</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left" >
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_HeDaoTao" class="Label">Training system</span>
+                </td><td style="text-align: left" >
+                <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblHeDaoTao" class="Label">Đại học chính quy</span>
                 </td>
             </tr>
             <tr>
-                <td width="20px" align="center">
-                    <div style="width: 15px; height: 15px; background-color: #CCCCFF"></div>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Khoahoc" class="Label">Course</span>
                 </td>
-                <td>
-                    <span id="ctl00_ContentPlaceHolder1_ctl00_lbltrungtatca" class="Label">
-      Môn học trùng tất cả các tiết
-    </span></td>
-                <td></td>
+                <td style="text-align: left" ><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblKhoaHoc" class="Label"><b>2015-2020</b></span></td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblMonHocKhongXepTKB" class="Label"><b><font color="Red" size="4"></font></b></span>
+             <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_CVHT" class="Label">Academic Advisor</span>
                 </td>
+                <td style="text-align: left" ><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblCVHT" class="Label"><b></b></span></td>
             </tr>
         </table>
-    
+    </div>
+    <div class="bottom">
+    </div>
 </div>
-    
+<span id="ctl00_ContentPlaceHolder1_ctl00_lblThongbao" class="Label"></span>
+
+<div id="ctl00_ContentPlaceHolder1_ctl00_pnlXemDiemChung">
+	
+<center>
+<a id="ctl00_ContentPlaceHolder1_ctl00_lnkChangeview2" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ctl00$lnkChangeview2','')"><b><font color="Red">View all semesters</font></b></a>
+<br />
+<span id="ctl00_ContentPlaceHolder1_ctl00_lblChonHK" class="Label">Enter semester to view exam mark (Exp: 20061):</span> &nbsp;&nbsp; <input name="ctl00$ContentPlaceHolder1$ctl00$txtChonHK" type="text" id="ctl00_ContentPlaceHolder1_ctl00_txtChonHK" class="TextBox" /> 
+    <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnChonHK" value="View" id="ctl00_ContentPlaceHolder1_ctl00_btnChonHK" class="DefaultButton" />
+</center>
+
+<table>
+<tr>
+<td align="left"><span id="ctl00_ContentPlaceHolder1_ctl00_Label1" class="Label"></span></td>
+</tr>
+    <tr>
+        <td>
+            <div id="ctl00_ContentPlaceHolder1_ctl00_div1" class="grid_scroll" style=" border-width: thin; 
+ height:800px; ">
+                <table class="view-table" cellpadding="0" border="0">
+		<tr class="title-diem">
+			<td title="stt1" align="center" width="16"><span class="Label" style="display:inline-block;">.No</span></td><td title="Subject code" align="center" width="60"><span class="Label" style="display:inline-block;">Sub code</span></td><td title="Subject name" align="left" width="250"><span class="Label" style="display:inline-block;">Subject name</span></td><td title="Credits" align="center" width="20"><span class="Label" style="display:inline-block;">Cre</span></td><td title="% of Deligence" align="center" width="20"><span class="Label" style="display:inline-block;">% of Deligence</span></td><td title=" % of test " align="center" width="20"><span class="Label" style="display:inline-block;">% of test</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">textPTTNTH</span></td><td title=" % of exercise " align="center" width="20"><span class="Label" style="display:inline-block;">% of exercise</span></td><td title=" % of exam " align="center" width="35"><span class="Label" style="display:inline-block;">% of exam</span></td><td title="Deligence mark" align="center" width="40"><span class="Label" style="display:inline-block;">Deligence mark</span></td><td align="center" width="40"><span class="Label" style="display:inline-block;">Exam mark</span></td><td align="center" width="40"><span class="Label" style="display:inline-block;">txtDiemThiNghiemTH</span></td><td align="center" width="40"><span class="Label" style="display:inline-block;">textDiemBT</span></td><td align="center"><span class="Label">Mark of 1st exam</span></td><td align="center"><span class="Label">Mark of 2nd exam</span></td><td title=" Final mark (in 10/100 system)" align="center"><span class="Label">FN(10)</span></td><td title=" Final mark (in character system)" align="center"><span class="Label">FN(CH)</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Quarter 2, Academic year 2018-2019</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1416</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Đảm bảo chất lượng phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1461</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Xây dựng các hệ thống nhúng</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1408</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Chuyên đề công nghệ phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1427</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kiến trúc và thiết kế phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">5</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1448</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Phát triển phần mềm hướng dịch vụ</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">6</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1449</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Phát triển ứng dụng cho các thiết bị di động</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr>
+	</table>
+                
+             </div>
+        </td>
+    </tr>
+    <tr>
+        <td >
+        <br/>
+        <center>
+            <a id="ctl00_ContentPlaceHolder1_ctl00_lnkChangeview" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ctl00$lnkChangeview','')"><b><font color="Red">View all semesters</font></b></a>
+           
+            </center>
+            
+            <br />
+            <span id="ctl00_ContentPlaceHolder1_ctl00_lblNgayCapNhatDiem" class="Label">( Data has been uploaded in: 16:33 Date 18/6/2019 )</span>
+            <br />
+            
+        </td>
+    </tr>
+</table>
+        
+
 </div>
 
 
 
 
-
-
-
+ <center>
+ <h3>
+            <a href="Report/Report_xemDiemThi.aspx" id="ctl00_ContentPlaceHolder1_ctl00_linkInDiem" target="_blank">PRINT EXAM MARK</a>
+     <br />
+     <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnExport" value="btnExport" id="ctl00_ContentPlaceHolder1_ctl00_btnExport" class="DefaultButton" />
+ </h3>
+     </center>
 
 
 
@@ -785,7 +669,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
         <img src="App_Themes/Standard/Images/iconHome.png" alt="" align="right"  />    
         </td>
         <td align="left" class="style3">
-        <a href="Default.aspx"><span id="ctl00_Footer1_lbltrangchu" class="Label">Trang Chủ</span></a>
+        <a href="Default.aspx"><span id="ctl00_Footer1_lbltrangchu" class="Label">Home page</span></a>
         </td>
         
         
@@ -793,7 +677,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
 <tr>
 <td class="style5" >
     <img src="App_Themes/Standard/Images/icon_11c.gif" alt="" /> 
-    <a href="http://www.edusoft.net.vn" target="_blank"><span id="ctl00_Footer1_lblCopyRight" class="Label">Thiết kế bởi cty Phần mềm Anh Quân</span></a>
+    <a href="http://www.edusoft.net.vn" target="_blank"><span id="ctl00_Footer1_lblCopyRight" class="Label">Designed by AQ</span></a>
     
     
      
@@ -803,7 +687,7 @@ if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side frame
     </td>
     <td class="style3">
     <a href="#Top" title="Go to top" style="text-decoration: none; font-family:Tahoma;font-size:8pt">
-    <span id="ctl00_Footer1_lbltop" class="Label">Đầu Trang</span>
+    <span id="ctl00_Footer1_lbltop" class="Label">Go to top</span>
     </a>
 </td>
 <td align="right"><a href="Default.aspx?page=thongtinsp"><span id="ctl00_Footer1_lblAbout" class="Label">About</span></a></td>

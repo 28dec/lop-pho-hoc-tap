@@ -1,7 +1,7 @@
 import flask, qldt_schedule_creator, os, json
 from flask import Flask, request, jsonify
 app = Flask(__name__)
-
+app.config['JSON_AS_ASCII'] = False
 @app.route('/api', methods=['GET'])
 def api():
     msg = request.args.get('last user freeform input')
@@ -44,7 +44,7 @@ def image_api():
 @app.route('/test', methods=['GET'])
 def test():
     msg = request.args.get('id')
-    rps_text, rps_url = qldt_schedule_creator.main(msg, debug = True)
+    rps_text, rps_url = qldt_schedule_creator.main(msg, _GENERATE_IMAGE = True)
     print("IMAGE URL -> {}".format(rps_url))
     j = {
         "messages":[
@@ -60,7 +60,7 @@ def point_report():
     username = request.args.get('username')
     password = request.args.get('password')
     rps_text = qldt_schedule_creator.get_point_report(username, password)
-    return rps_text
+    return jsonify(rps_text)
 
 @app.route('/', methods=['GET'])
 def index():

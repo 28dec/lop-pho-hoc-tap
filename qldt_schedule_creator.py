@@ -138,7 +138,7 @@ def init_home_page():
 def get_daily_schedule_from_server_response(tkb_page_html_code):
 	"""
 	This function get schedule in current day (if exists) in html code provided!
-	
+
 	Args:
 		tkb_page_html_code: String object
 	"""
@@ -295,9 +295,8 @@ def get_all_point_from_html_source(rps):
 		row_diem = term
 		term_list_element = []
 		term_report = []
-		for i in range(0, 41):
+		for i in range(0, 40):
 			try:
-				
 				row_diem = row_diem.find_next('tr')
 				if row_diem['class'] == ["row-diem"]:
 					tmp_0012 = row_diem.find_all('td')
@@ -308,9 +307,9 @@ def get_all_point_from_html_source(rps):
 					# print(tmp_0018) #tmp_0018 ->['1', 'BAS1141', 'Tiếng anh A11', '3', '0', '0', '0', '0', '100', ' \xa0 ', ' \xa0 ', ' \xa0 ', ' \xa0 ', ' \xa0 ', ' \xa0 ', '10.0', 'A+']
 				elif row_diem['class'] == ["row-diemTK"]:
 					tmp_0049 = row_diem.find_all('td')
-					tmp_0050 = []
+					tmp_0050 = {}
 					for item in tmp_0049:
-						tmp_0050 = item.text
+						tmp_0050[item.find_all('span')[0].text] = item.find_all('span')[1].text
 					# print(tmp_0050)
 					term_report.append(tmp_0050)
 				else:
@@ -328,14 +327,15 @@ def get_all_point_from_html_source(rps):
 		j['report'] = term_report
 		# print(json.dumps(j, indent=4, sort_keys=True))
 		term_lists.append(j)
-	return json.dumps(term_lists)
+	# return json.dumps(term_lists)
+	return term_lists
 
 def get_weekly_schedule_from_server_response(rps):
 	"""
 	This function ... hmmm, wrong code convention :((
 	"""
 	rtn = ""
-	
+
 
 def schedule_list_to_string(tkb):
 	"""
@@ -386,7 +386,7 @@ def heroku_generate_image(student_id, cookie_value):
 def get_tkb_page(student_id):
 	"""
 	This function access website with student_id provided and return html source code
-	
+
 	Args:
 		student_id: String object
 	"""
@@ -397,10 +397,10 @@ def get_tkb_page(student_id):
 	# rtn = rtn[:head_tag_position] + inject_data + rtn[head_tag_position:]
 	offline_schedule_file = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y') + '.html'
 	with open(offline_schedule_file, 'wb') as f: f.write(rtn)
-	
+
 	# generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
 
-	
+
 	return rtn
 
 def main(msg, _GENERATE_IMAGE):
@@ -421,11 +421,20 @@ def main(msg, _GENERATE_IMAGE):
 	return rps, img_url
 
 def get_point_report(username, password):
+	print('hello, im get_point_report')
 	init()
 	if init_home_page() == SUCCESS:
 		qldt_login(username, password)
 		rps = get_all_point_from_html_source(get_view_points_source())
 		return rps
+
+def get_examination_schedule(username, password):
+	init()
+	if init_home_page() == SUCCESS:
+		qldt_login(username, password)
+		# rps = get_all_examination_schedule()
+		# return rps
+	return
 def test1():
 	global GENERATE_IMAGE
 	GENERATE_IMAGE = False
