@@ -1,6 +1,8 @@
-import flask, qldt_schedule_creator, os, json
+import flask, qldt_schedule_creator, os, json, mysql.connector
+import db_mysql
 from flask import Flask, request, jsonify
 app = Flask(__name__)
+db = db_mysql.MySQL()
 app.config['JSON_AS_ASCII'] = False
 @app.route('/api', methods=['GET'])
 def api():
@@ -61,6 +63,23 @@ def point_report():
     password = request.args.get('password')
     rps_text = qldt_schedule_creator.get_point_report(username, password)
     return jsonify(rps_text)
+
+@app.route('/text_api_view_examination_schedule', methods=['GET'])
+def examination_schedule():
+    username = request.args.get('username')
+    password = request.args.get('password')
+    rps = qldt_schedule_creator.get_examination_schedule_source(username, password)
+    return jsonify(rps)
+
+
+@app.route('/text_api_check_exam_schedule_notification', methods=['GET'])
+def check_exam_schedule_notification():
+    global db
+    username = request.args.get('username')
+    password = request.args.get('password')
+    # qldt_schedule_creator.get_examination_schedule_source(username, password) # sai code convention, get_exam_schedule cung add cac exam vao db luon, nen moi goi ham nay o day
+    rps = db.check_exam_schedule_notification(username)
+    return jsonify(rps)
 
 @app.route('/', methods=['GET'])
 def index():

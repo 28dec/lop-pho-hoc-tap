@@ -1,4 +1,4 @@
-import requests, re, json, time, datetime, pytz, img_uploader, traceback, os, subprocess
+import requests, re, json, time, datetime, pytz, img_uploader, traceback, os, subprocess, db_mysql
 from bs4 import BeautifulSoup as bsoup
 
 
@@ -337,6 +337,7 @@ def get_weekly_schedule_from_server_response(rps):
 	rtn = ""
 
 
+
 def schedule_list_to_string(tkb):
 	"""
 	This function generate response message for webhook from schedule list
@@ -428,23 +429,46 @@ def get_point_report(username, password):
 		rps = get_all_point_from_html_source(get_view_points_source())
 		return rps
 
-def get_examination_schedule(username, password):
+def get_view_examination_schedule_source():
+	global r
+	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page=xemlichthi')
+	with open('1438.html', 'wb') as f:
+		f.write(rps.content)
+	return rps
+
+def get_examination_schedule_from_source(rps, student_code):
+	soup = bsoup(rps.content, 'lxml')
+	exam_schedule_table = soup.find(id='ctl00_ContentPlaceHolder1_ctl00_gvXem')
+	exam_objects = exam_schedule_table.find_all('tr')
+	exam_schedule = []
+	for exam_obj in exam_objects:
+		j = {}
+		if not exam_obj.has_attr('onmouseover'): continue
+		info = exam_obj.find_all('span')
+		j['subj_code'] = info[1].text
+		j['subj_name'] = info[2].text
+		j['exam_date'] = info[6].text
+		j['exam_hour'] = info[7].text
+		j['exam_room'] = info[9].text
+		j['exam_type'] = info[10].text
+		j['student_code'] = student_code
+		db_mysql.MySQL().create_examination_schedule(j)
+		exam_schedule.append(j)
+	return exam_schedule
+
+def get_examination_schedule_source(username, password):
 	init()
+	print("get examination schedule for " + username)
 	if init_home_page() == SUCCESS:
 		qldt_login(username, password)
-		# rps = get_all_examination_schedule()
-		# return rps
-	return
+		rps = get_examination_schedule_from_source(get_view_examination_schedule_source(), username)
+	return rps
+
+
 def test1():
 	global GENERATE_IMAGE
 	GENERATE_IMAGE = False
 	init()
 	if init_home_page() == SUCCESS:
-		# qldt_login('b15dccn318', 'bacxiucotdua')
-		rps = get_daily_schedule_from_server_response(get_access_to_target_week('B15DCCN318'))
+		rps = get_daily_schedule_from_server_response(get_access_to_target_week(''))
 		print(rps)
-
-if __name__ == '__main__':
-	# rps = get_point_report('b15dccn318', 'bacxiucotdua')
-	# print(rps)
-	print(main('b15dccn318', 0))
