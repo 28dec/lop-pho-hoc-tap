@@ -27,6 +27,7 @@ def init():
 	CAPTCHA_ELEMENT_ID = "ctl00_ContentPlaceHolder1_ctl00_lblCapcha"
 	home_url = 'http://qldt.ptit.edu.vn/Default.aspx?page=gioithieu'
 	tkb_url = 'http://qldt.ptit.edu.vn/Default.aspx?sta=0&page=thoikhoabieu&id='
+	print('init() INITIALIZED')
 	return
 
 def get_current_day_of_week():
@@ -257,6 +258,7 @@ def qldt_login(username, password):
 	rps = r.post(url = 'http://qldt.ptit.edu.vn/default.aspx?page='+page_name, data=payload)
 	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page='+page_name)
 	with open('after_post_payload.html', 'wb') as f: f.write(rps.content)
+	return rps
 
 def get_view_points_source():
 	global r
@@ -428,6 +430,14 @@ def get_point_report(username, password):
 		qldt_login(username, password)
 		rps = get_all_point_from_html_source(get_view_points_source())
 		return rps
+
+def qldt_check_login(username, password):
+	init()
+	if init_home_page() == SUCCESS:
+		rps = qldt_login(username, password)
+		if username in rps.text or username.upper() in rps.text:
+			return True
+	return False
 
 def get_view_examination_schedule_source():
 	global r
