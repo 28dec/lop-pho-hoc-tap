@@ -25,8 +25,8 @@ def init():
 	}
 	r = requests.Session()
 	CAPTCHA_ELEMENT_ID = "ctl00_ContentPlaceHolder1_ctl00_lblCapcha"
-	home_url = 'http://qldt.ptit.edu.vn/Default.aspx?page=gioithieu'
-	tkb_url = 'http://qldt.ptit.edu.vn/Default.aspx?sta=0&page=thoikhoabieu&id='
+	home_url = 'http://dkmh.hitu.edu.vn/web/Default.aspx?page=gioithieu'
+	tkb_url = 'http://dkmh.hitu.edu.vn/web/Default.aspx?sta=0&page=thoikhoabieu&id='
 	print('init() INITIALIZED')
 	return
 
@@ -74,8 +74,8 @@ def start_time_int_to_hour(n):
 def bypass_captcha(rps):
 	"""
 	This function send bypass captcha requests to server.
-	Before this function: global session [r] will be asked for captcha when access qldt.ptit.edu.vn
-	After this function: global session [r] has free-access to qldt.ptit.edu.vn.
+	Before this function: global session [r] will be asked for captcha when access dkmh.hitu.edu.vn/web
+	After this function: global session [r] has free-access to dkmh.hitu.edu.vn/web.
 
 	Args:
 		rps: String object, HTML source code include captcha inside.
@@ -120,7 +120,7 @@ def bypass_captcha(rps):
 
 def init_home_page():
 	"""
-	If this function SUCCESS, global session [r] could be access qldt.ptit.edu.vn without Captcha asked!
+	If this function SUCCESS, global session [r] could be access dkmh.hitu.edu.vn/web without Captcha asked!
 
 	Return:
 		True: if bypass captcha SUCCESS or no-captcha detected
@@ -181,7 +181,7 @@ def get_access_to_target_week(student_id):
 	viewstate_pattern = r"id=\"__VIEWSTATE\".*\"(.*)\""
 	viewstategenerator_pattern = r"id=\"__VIEWSTATEGENERATOR\".*\"(.*)\""
 	week_option_pattern = r"id=\"ctl00_ContentPlaceHolder1_ctl00_ddlTuan\".*\s*.*value=\"(.*)\""
-	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
+	rps = r.get('http://dkmh.hitu.edu.vn/web/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
 	with open('1430.html', 'wb') as f:
 		f.write(rps.content)
 	viewstate = re.search(viewstate_pattern, rps.text)
@@ -193,20 +193,18 @@ def get_access_to_target_week(student_id):
 	week_option = re.search(week_option_pattern, rps.text).group(1)
 	if viewstategenerator:
 		viewstategenerator = viewstategenerator.group(1)
-	NHHK = '20182'
-	print("NHHK = {}".format(NHHK))
 	payload = {
 		'__VIEWSTATE':viewstate,
 		'__VIEWSTATEGENERATOR':viewstategenerator,
 		'__EVENTARGUMENT':'',
 		'__LASTFOCUS':'',
 		'__EVENTTARGET':'ctl00$ContentPlaceHolder1$ctl00$ddlTuan',
-		'ctl00$ContentPlaceHolder1$ctl00$ddlChonNHHK': NHHK, #this need fixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		'ctl00$ContentPlaceHolder1$ctl00$ddlChonNHHK':'20182', #this need fixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		'ctl00$ContentPlaceHolder1$ctl00$ddlLoai':'0',
 		'ctl00$ContentPlaceHolder1$ctl00$ddlTuan':week_option
 	}
-	rps = r.post(url = 'http://qldt.ptit.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id='+student_id, data = payload)
-	rps = r.get(url = 'http://qldt.ptit.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
+	rps = r.post(url = 'http://dkmh.hitu.edu.vn/web/default.aspx?page=thoikhoabieu&sta=0&id='+student_id, data = payload)
+	rps = r.get(url = 'http://dkmh.hitu.edu.vn/web/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
 	viewstate = re.search(viewstate_pattern, rps.text)
 	if viewstate:
 		viewstate = viewstate.group(1)
@@ -222,12 +220,12 @@ def get_access_to_target_week(student_id):
 		'__EVENTARGUMENT':'',
 		'__LASTFOCUS':'',
 		'__EVENTTARGET':'ctl00$ContentPlaceHolder1$ctl00$ddlTuan',
-		'ctl00$ContentPlaceHolder1$ctl00$ddlChonNHHK':NHHK, #this need fixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		'ctl00$ContentPlaceHolder1$ctl00$ddlChonNHHK':'20182', #this need fixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		'ctl00$ContentPlaceHolder1$ctl00$ddlLoai':'0',
 		'ctl00$ContentPlaceHolder1$ctl00$ddlTuan':week_option
 	}
-	rps = r.post(url = 'http://qldt.ptit.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id='+student_id, data = payload)
-	rps = r.get(url = 'http://qldt.ptit.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
+	rps = r.post(url = 'http://dkmh.hitu.edu.vn/web/default.aspx?page=thoikhoabieu&sta=0&id='+student_id, data = payload)
+	rps = r.get(url = 'http://dkmh.hitu.edu.vn/web/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
 	with open('1437.html', 'wb') as f:
 		f.write(rps.content)
 	return rps.content
@@ -237,7 +235,7 @@ def qldt_login(username, password):
 	page_name = 'gioithieu'
 	viewstate_pattern = r"id=\"__VIEWSTATE\".*\"(.*)\""
 	viewstategenerator_pattern = r"id=\"__VIEWSTATEGENERATOR\".*\"(.*)\""
-	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page='+page_name)
+	rps = r.get('http://dkmh.hitu.edu.vn/web/default.aspx?page='+page_name)
 	with open('after_first_get.html', 'wb') as f:
 		f.write(rps.content)
 	viewstate = re.search(viewstate_pattern, rps.text)
@@ -257,8 +255,8 @@ def qldt_login(username, password):
 		'__EVENTTARGET':'',
 		'ctl00$ContentPlaceHolder1$ctl00$ucDangNhap$btnDangNhap': 'Đăng Nhập'
 	}
-	rps = r.post(url = 'http://qldt.ptit.edu.vn/default.aspx?page='+page_name, data=payload)
-	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page='+page_name)
+	rps = r.post(url = 'http://dkmh.hitu.edu.vn/web/default.aspx?page='+page_name, data=payload)
+	rps = r.get('http://dkmh.hitu.edu.vn/web/default.aspx?page='+page_name)
 	with open('after_post_payload.html', 'wb') as f: f.write(rps.content)
 	return rps
 
@@ -266,7 +264,7 @@ def get_view_points_source():
 	global r
 	viewstate_pattern = r"id=\"__VIEWSTATE\".*\"(.*)\""
 	viewstategenerator_pattern = r"id=\"__VIEWSTATEGENERATOR\".*\"(.*)\""
-	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page=xemdiemthi')
+	rps = r.get('http://dkmh.hitu.edu.vn/web/default.aspx?page=xemdiemthi')
 	with open('1430.html', 'wb') as f:
 		f.write(rps.content)
 	viewstate = re.search(viewstate_pattern, rps.text)
@@ -285,7 +283,7 @@ def get_view_points_source():
 		'__EVENTTARGET':'ctl00$ContentPlaceHolder1$ctl00$lnkChangeview2',
 		'ctl00$ContentPlaceHolder1$ctl00$txtChonHK':''
 	}
-	rps = r.post(url = 'http://qldt.ptit.edu.vn/default.aspx?page=xemdiemthi', data=payload)
+	rps = r.post(url = 'http://dkmh.hitu.edu.vn/web/default.aspx?page=xemdiemthi', data=payload)
 	with open('1638.html', 'wb') as f: f.write(rps.content)
 	return rps
 	print("DONE")
@@ -359,7 +357,7 @@ def schedule_list_to_string(tkb):
 	return rtn
 
 def heroku_generate_image(student_id, cookie_value):
-	url = 'http://qldt.ptit.edu.vn/Default.aspx?page=thoikhoabieu&id='
+	url = 'http://dkmh.hitu.edu.vn/web/Default.aspx?page=thoikhoabieu&id='
 	options = {
 		'quality':100,
 		'width':2048,
@@ -414,14 +412,14 @@ def main(msg, _GENERATE_IMAGE):
 	init()
 	scriptDirectory = os.path.dirname(os.path.realpath(__file__))
 	msg = str(msg)
-	if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
-		student_id = msg.upper()
-	else:
-		return "MA SINH VIEN KHONG HOP LE", None
+	student_id = msg
+	# if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
+	# 	student_id = msg.upper()
+	# else:
+	# 	return "MA SINH VIEN KHONG HOP LE", None
 	print("Nhan duoc yeu cau moi, code  -> {}".format(student_id))
 	if init_home_page() == SUCCESS:
-		print("hello =))")
-		tkb = get_daily_schedule_from_server_response(get_access_to_target_week(student_id))
+		tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
 		rps = schedule_list_to_string(tkb)
 	if GENERATE_IMAGE == True: img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
 	return rps, img_url
@@ -444,30 +442,30 @@ def qldt_check_login(username, password):
 
 def get_view_examination_schedule_source():
 	global r
-	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page=xemlichthi')
+	rps = r.get('http://dkmh.hitu.edu.vn/web/default.aspx?page=xemlichthi')
 	with open('1438.html', 'wb') as f:
 		f.write(rps.content)
 	return rps
 
-# def get_examination_schedule_from_source(rps, student_code):
-# 	soup = bsoup(rps.content, 'lxml')
-# 	exam_schedule_table = soup.find(id='ctl00_ContentPlaceHolder1_ctl00_gvXem')
-# 	exam_objects = exam_schedule_table.find_all('tr')
-# 	exam_schedule = []
-# 	for exam_obj in exam_objects:
-# 		j = {}
-# 		if not exam_obj.has_attr('onmouseover'): continue
-# 		info = exam_obj.find_all('span')
-# 		j['subj_code'] = info[1].text
-# 		j['subj_name'] = info[2].text
-# 		j['exam_date'] = info[6].text
-# 		j['exam_hour'] = info[7].text
-# 		j['exam_room'] = info[9].text
-# 		j['exam_type'] = info[10].text
-# 		j['student_code'] = student_code
-# 		db_mysql.MySQL().create_examination_schedule(j)
-# 		exam_schedule.append(j)
-# 	return exam_schedule
+def get_examination_schedule_from_source(rps, student_code):
+	soup = bsoup(rps.content, 'lxml')
+	exam_schedule_table = soup.find(id='ctl00_ContentPlaceHolder1_ctl00_gvXem')
+	exam_objects = exam_schedule_table.find_all('tr')
+	exam_schedule = []
+	for exam_obj in exam_objects:
+		j = {}
+		if not exam_obj.has_attr('onmouseover'): continue
+		info = exam_obj.find_all('span')
+		j['subj_code'] = info[1].text
+		j['subj_name'] = info[2].text
+		j['exam_date'] = info[6].text
+		j['exam_hour'] = info[7].text
+		j['exam_room'] = info[9].text
+		j['exam_type'] = info[10].text
+		j['student_code'] = student_code
+		db_mysql.MySQL().create_examination_schedule(j)
+		exam_schedule.append(j)
+	return exam_schedule
 
 def get_examination_schedule_source(username, password):
 	init()
@@ -478,6 +476,13 @@ def get_examination_schedule_source(username, password):
 	return rps
 
 
+def test1():
+	global GENERATE_IMAGE
+	GENERATE_IMAGE = False
+	init()
+	if init_home_page() == SUCCESS:
+		rps = get_daily_schedule_from_server_response(get_access_to_target_week(''))
+		print(rps)
 
 if __name__ == '__main__':
 	main()

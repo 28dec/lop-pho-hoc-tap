@@ -1,0 +1,877 @@
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head><link id="ctl00_favicon" rel="shortcut icon" type="image/x-icon" href="Images/Config.gif" />
+    <script src="JS/CheckDate.js" type="text/javascript"></script>
+    <script src="JS/jquery-2.2.1.js" type="text/javascript"></script>
+    <script src="JS/dialog.js" type="text/javascript"></script>
+    <title>
+	Cổng Thông Tin Đào Tạo-TRƯỜNG CAO ĐẲNG CÔNG THƯƠNG TP.HCM (version ktuyen: 2019.01.16)
+</title>
+    <script type="text/javascript" language="javascript">
+        function ShowMess()
+        {
+            var url = location.href;
+            if (url.indexOf("err=serveroverload", 0) > 0)
+                alert('Server quá tải, vui lòng đăng nhập lại!');
+            else if (url.indexOf("err=sessionreuse", 0) > 0)
+                alert('Vui lòng tắt và mở lại trình duyệt!');
+        }
+    </script>   
+<link href="App_Themes/Standard/Standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/StyleSheet.css" type="text/css" rel="stylesheet" /></head>
+
+<body background="App_Themes/Standard/Images/background.png" onload="ShowMess()">
+    <form name="aspnetForm" method="post" action="Default.aspx" id="aspnetForm" enctype="multipart/form-data">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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FgIfAAUnPHRkIHN0eWxlPSdkaXNwbGF5Om5vbmUnICB3aWR0aCA9JzAlJz4gZAIJDxYCHwAFCjwvdGQ+IDx0ZD5kAgsPDxYCHwAFC1RIw5RORyBCw4FPZGQCDQ9kFgpmD2QWAmYPDxYIHwAFjQI8YSBjbGFzcz0nVGV4dFRpdGxlJyBocmVmPSdkZWZhdWx0LmFzcHg/cGFnZT1jaGl0aWV0dGhvbmd0aW4maWQ9Myc+S+G6vyBob+G6oWNoIMSRxINuZyBrw70gbcO0biBo4buNYyBISzMgKEjDqCksIDIwMTgtMjAxOSAoxJHhu6N0IDMpIDxpbWcgc3R5bGU9JyBib3JkZXI6MCcgIHNyYz0iaHR0cDovL2RrbWguaGl0dS5lZHUudm4vd2ViL1VwbG9hZC9pY29uX21vaS5naWYiIGFsdD0iIiAvPjwvYT48c3BhbiBjbGFzcz0nTmdheVRpdGxlJz4gKDA3LzA1LzIwMTkpPC9zcGFuPh4JRm9yZUNvbG9yCiUeD0hvcml6b250YWxBbGlnbgsqKVN5c3RlbS5XZWIuVUkuV2ViQ29udHJvbHMuSG9yaXpvbnRhbEFsaWduAR8CAoSABGRkAgEPZBYCZg8PFgYfBQsrBAEfAAXfBjxzcGFuIGNsYXNzPSdUZXh0VGhvbmdUaW4nIHN0eWxlPSd0ZXh0LWFsaWduOmxlZnQnPjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tdG9wOjYuMHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2luLWJvdHRvbTo2LjBwdDsmI3hBO21hcmdpbi1sZWZ0OjBpbjt0ZXh0LWFsaWduOmp1c3RpZnkiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogVGltZXMgTmV3IFJvbWFuOyI+PHN0cm9uZyBzdHlsZT0ibXNvLWJpZGktZm9udC13ZWlnaHQ6bm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6ICMwMDAwZmY7Ij4qJm5ic3A7IDwvc3Bhbj48L3N0cm9uZz48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBUaW1lcyBOZXcgUm9tYW47IGNvbG9yOiAjMDAwMGZmOyI+PHN0cm9uZyBzdHlsZT0ibXNvLWJpZGktZm9udC13ZWln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c3N3b3JkIMSRxINuZyBuaOG6rXA8YnIgLz48L2E+PHNwYW4gY2xhc3M9J05nYXlUaXRsZSc+ICgwOC8wNS8yMDE4KTwvc3Bhbj4fBAolHwULKwQBHwIChIAEZGQCAQ9kFgJmDw8WAh8ABY0CPHNwYW4gY2xhc3M9J1RleHRUaG9uZ1Rpbicgc3R5bGU9J3RleHQtYWxpZ246bGVmdCc+PC9zcGFuPjxkaXYgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnID48ZGl2IGNsYXNzPSdDaGlUaWV0Jz48aW1nIHNyYz0nQXBwX1RoZW1lcy9TdGFuZGFyZC9JbWFnZXMvYXJyb3dfci5naWYnIGFsdD0nJy8+IDxhIGNsYXNzPSdUZXh0VGhvbmdUaW4nIGhyZWY9J2RlZmF1bHQuYXNweD9wYWdlPWNoaXRpZXR0aG9uZ3RpbiZpZD0xJz5YZW0gQ2hpIFRp4bq/dDwvYT48L2Rpdj48L2Rpdj5kZAICD2QWAmYPDxYGHwULKwQBHwAFoQI8dGFibGUgd2lkdGg9JzMwMHB4JyBzdHlsZT0ndGV4dC1hbGlnbjpsZWZ0Jz48dHI+PHRkIHJvd3NwYW49JzInIHdpZHRoPScxNXB4Jz48aW1nIHNyYz0nQXBwX1RoZW1lcy9TdGFuZGFyZC9JbWFnZXMvaW1hZ2VzLmpwZycgd2lkdGg9JzE1cHgnIGFsdD0nJy8+PC90ZD48dGQgYWxpZ249J2xlZnQnIHdpZHRoPScyODBweCc+QuG6o24gdGluIGPFqTwvc3Bhbj48L3RkPjx0ZCBhbGlnbj0nbGVmdCc+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0nMicgY2xhc3M9J2tlY2hhbSc+PC90ZD48L3RyPjwvdGFibGU+HwICgIAEZGQCAw9kFgJmDw8WBh8FCysEAR8ABZEDPGltZyBzcmM9J0FwcF9UaGVtZXMvU3RhbmRhcmQvSW1hZ2VzL0J1bGw5LmdpZicgYWx0PScnLz48YSBjbGFzcz0nVGV4dFRpdGxlJyBocmVmPSdkZWZhdWx0LmFzcHg/cGFnZT1jaGl0aWV0dGhvbmd0aW4maWQ9NCc+PGEgaHJlZj0iaHR0cDovL3d3dy5oaXR1LmVkdS52bi85OTktSHVvbmdkYW5kYW5na3ltb25ob2NvbmlsbmUiPkjGsOG7m25nIGThuqtuIMSRxINuZyBrw70gbcO0biBo4buNYyBvbmxpbmU8L2E+PGJyIC8+PGltZyBzdHlsZT0nIGJvcmRlcjowJyAgc3JjPScuL0ltYWdlcy9uZXcuZ2lmJyB3aWR0aD0nMzBweCcgaGVpZ2h0PSczMHB4JyBhbHQ9J1RpbiB04bupYyBt4bubaSBj4bqtcCBuaOG6rXQnLz4uLi4gKDxzcGFuIGNsYXNzPSdOZ2F5VGl0bGUnPjA3LzA2LzIwMTk8L3NwYW4+KTwvYT4fAgKAgARkZAIFD2QWAmYPDxYGHwULKwQDHwAFZzxzcGFuIGNsYXNzPSd0YXRjYWJhbnRpbic+PGEgaHJlZj0nZGVmYXVsdC5hc3B4P3BhZ2U9ZGFuaHNhY2h0aG9uZ3RpbiZ0eXBlPTAnPlhlbSB04bqldCBj4bqjPC9hPjwvc3Bhbj4fAgKAgARkZAIjDxYCHwAFIzwvdGQ+IDx0ZCB3aWR0aD0nNDMlJyB2YWxpZ249J3RvcCc+ZAIlDw8WAh8ABRlUSU4gVOG7qEMgVsOAIFPhu7AgS0nhu4ZOZGQCJw9kFgICAg9kFgJmDw8WBh8FCysEAx8ABWc8c3BhbiBjbGFzcz0ndGF0Y2FiYW50aW4nPjxhIGhyZWY9J2RlZmF1bHQuYXNweD9wYWdlPWRhbmhzYWNodGhvbmd0aW4mdHlwZT0yJz5YZW0gdOG6pXQgY+G6ozwvYT48L3NwYW4+HwICgIAEZGQCKQ9kFgICAQ8WAh8AZWQCKw8WAh8ABSA8L3RkPiA8dGQgIHN0eWxlPSdkaXNwbGF5Om5vbmUnPmQCMQ8WAh8ABSA8L3RkPiA8dGQgIHN0eWxlPSdkaXNwbGF5Om5vbmUnPmQCCQ9kFggCAQ8PFgIfAAViQ29weXJpZ2h0IMKpMjAwOSBUUsav4bucTkcgQ0FPIMSQ4bqyTkcgQ8OUTkcgVEjGr8agTkcgVFAuSENNLiBRdeG6o24gbMO9IGLhu59pIELhu5kgQ8O0bmcgVGjGsMahbmdkZAIDDw8WAh8ABQtUcmFuZyBDaOG7p2RkAgUPDxYCHwAFLVRoaeG6v3Qga+G6vyBi4bufaSBjdHkgUGjhuqduIG3hu4FtIEFuaCBRdcOibmRkAgcPDxYCHwAFDMSQ4bqndSBUcmFuZ2RkGAEFMmN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkY3RsMDAkdWNEYW5nTmhhcCRtdkxvZ2luDw9kZmTwaDo2ZuxwgIjo6rUwjRgyJIKHPg==" />
+
+
+<script type="text/javascript" src="/web/ajaxpro/prototype.ashx"></script>
+<script type="text/javascript" src="/web/ajaxpro/core.ashx"></script>
+<script type="text/javascript" src="/web/ajaxpro/converter.ashx"></script>
+<script type="text/javascript" src="/web/ajaxpro/EduSoft.Web.UC.Logout,EduSoft.Web.ashx"></script>
+<script type="text/javascript" src="/web/ajaxpro/EduSoft.Web.UC.GioiThieu,EduSoft.Web.ashx"></script>
+<script type="text/javascript" src="/web/ajaxpro/EduSoft.Web.UC.DangNhap,EduSoft.Web.ashx"></script>
+<script type="text/javascript" src="/web/ajaxpro/EduSoft.Web.UC.Footer,EduSoft.Web.ashx"></script>
+
+<script src="/web/WebResource.axd?d=hhlpJb0fOUg8yRm_krNUGeM8Ct1Hevbkag8MRdF4PBdnLwDKuEgQ4KV1wvyo8u1ekXfLIhJyLejfwl_ShLMtJQDqt7U1&amp;t=636924727236406250" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="DB1B4C9A" />
+    <div align="center" >
+        <div class="base">
+        
+        <table><tr><td>
+             
+<div style="background-image:url(./MessageFile/bannerDKMH.jpg)">
+        <table width="1000px"><tr><td height="115px" style="padding-left:50px" valign="bottom" align="right">
+              
+
+<script language="javascript" type="text/javascript">
+ 
+    function changeLanguage_click(obj)
+    {        
+        EduSoft.Web.UC.Logout.ChangeLanguage(obj,changeLanguage_callback);
+    }
+    function changeLanguage_callback()
+    {
+        self.location=window.location;
+    }
+    function selectFont_change()
+    {       
+        var selectmenu=document.getElementById("selectFont");
+        var chosenOption=selectmenu.options[selectmenu.selectedIndex];
+        var font=chosenOption.value;
+        EduSoft.Web.UC.Logout.ChangeFont(font,ChangeFont_callback);
+    }
+    function ChangeFont_callback()
+    {
+        //self.location=window.location;
+    }
+
+    function ConfirmChuaLuu(obj) {
+
+        alert(obj);
+            self.location = "default.aspx?page=dkmonhoc";
+        
+    }
+</script>
+
+<div id="ctl00_Header1_ucLogout_dLog" class="logout" style="text-align: right; margin-bottom:0px">
+
+    <img src="App_Themes/Standard/Images/US.gif" alt="English" onclick="changeLanguage_click('_us')"
+        id="imgUS"  title ="English"/>
+    <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese" onclick="changeLanguage_click('_vi')"
+        id="imgVi" title="Vietnamese"/>
+<span id="ctl00_Header1_ucLogout_lblNguoiDung" class="Label"><b><font color="#FF3300"></font></b></span>&nbsp;
+    
+    
+    <a id="ctl00_Header1_ucLogout_lbtnLogOut" href="javascript:__doPostBack('ctl00$Header1$ucLogout$lbtnLogOut','')" style="font-family: 'Tahoma', Times, serif"><b><font color="#FF3300" size="2">Đăng Nhập</font></b></a>
+    &nbsp;<select id="selectFont" style="font-size: 11px; width: 100px; color: #000080;"
+        onchange="selectFont_change()">
+        <option value="uni">-------Font-------</option>
+        <option value="uni" selected>Font Unicode</option>
+        <option value="abc" >Font ABC</option>
+        <option value="vni" >Font Vni</option>
+        <option value="not" >Text không
+            dấu</option>
+    </select>
+</div>
+
+            </td></tr></table>
+</div>
+
+             
+
+<style type="text/css">
+    .styleApplication {
+        font-size: 26;
+        font-weight: bold;
+    }
+</style>
+
+<div class="left-menu">
+    <div class="right-menu">
+
+        <div class="main-menu" style="height: 110px">
+
+            <div id="ctl00_menu_pnlGioithieu" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=gioithieu">
+                        <span id="ctl00_menu_lblTrangChu" class="Label">TRANG CHỦ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            <div id="ctl00_menu_dkmonhoc" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=dkmonhoc">
+                        <span id="ctl00_menu_lblDangKyMonHoc" class="Label">ĐĂNG KÝ MÔN HỌC</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+            
+            
+
+            
+            
+
+            <div id="ctl00_menu_thoikhoabieu" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=thoikhoabieu">
+                        <span id="ctl00_menu_lblThoiKhoaBieu" class="Label">XEM TKB</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            
+            
+
+            
+
+             
+
+              
+
+            
+
+            
+
+            
+
+            <div id="ctl00_menu_thaydoittcn" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=thaydoittcn">
+                        <span id="ctl00_menu_lblThayDoiTTCN" class="Label">SỬA TT CÁ NHÂN</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+             <div id="ctl00_menu_ykiensinhvien" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=ykiensinhvien">
+                        <span id="ctl00_menu_lblykiensinhvien" class="Label">GÓP Ý KIẾN</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+            
+
+           
+
+            
+
+             
+
+
+            
+
+            
+            
+
+
+            
+
+
+            
+
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+
+            
+
+            
+            
+            
+            
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+            
+
+            
+
+              
+
+             
+
+             
+
+            
+
+            
+
+             
+          
+            
+
+            
+
+        </div>
+
+    </div>
+
+</div>
+
+             </td></tr><tr><td height="500px" valign="top">
+                
+
+
+<script src="JS/balloontip.js" type="text/javascript"></script>
+
+<link href="JS/balloontip.css" rel="stylesheet" type="text/css" />
+
+
+<style type="text/css">
+    #dhtmltooltip {
+        position: absolute;
+        width: 500px;
+        border: 1px solid black;
+        padding: 2px;
+        visibility: hidden;
+        z-index: 100;
+        filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);
+    }
+
+    .auto-style1 {
+        width: 14px;
+    }
+</style>
+<div id="dhtmltooltip"></div>
+<script type="text/javascript">
+
+    var offsetxpoint = -60 //Customize x offset of tooltip
+    var offsetypoint = 20 //Customize y offset of tooltip
+    var ie = document.all
+    var ns6 = document.getElementById && !document.all
+    var enabletip = false
+    if (ie || ns6)
+        var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
+
+    function ietruebody() {
+        return (document.compatMode && document.compatMode != "BackCompat") ? document.documentElement : document.body
+    }
+
+    function ddrivetip(src, thecolor, thewidth) {
+        if (ns6 || ie) {
+            if (typeof thewidth != "undefined") tipobj.style.width = thewidth + "px"
+            if (typeof thecolor != "undefined" && thecolor != "") tipobj.style.backgroundColor = thecolor
+            tipobj.innerHTML = src;
+            enabletip = true
+            return false
+        }
+    }
+    function positiontip(e) {
+        if (enabletip) {
+            var curX = (ns6) ? e.pageX : event.clientX + ietruebody().scrollLeft;
+            var curY = (ns6) ? e.pageY : event.clientY + ietruebody().scrollTop;
+            //Find out how close the mouse is to the corner of the window
+            var rightedge = ie && !window.opera ? ietruebody().clientWidth - event.clientX - offsetxpoint : window.innerWidth - e.clientX - offsetxpoint - 20
+            var bottomedge = ie && !window.opera ? ietruebody().clientHeight - event.clientY - offsetypoint : window.innerHeight - e.clientY - offsetypoint - 20
+
+            var leftedge = (offsetxpoint < 0) ? offsetxpoint * (-1) : -1000
+
+            //if the horizontal distance isn't enough to accomodate the width of the context menu
+            if (rightedge < tipobj.offsetWidth)
+                //move the horizontal position of the menu to the left by it's width
+                tipobj.style.left = ie ? ietruebody().scrollLeft + event.clientX - tipobj.offsetWidth + "px" : window.pageXOffset + e.clientX - tipobj.offsetWidth + "px"
+            else if (curX < leftedge)
+                tipobj.style.left = "5px"
+            else
+                //position the horizontal position of the menu where the mouse is positioned
+                tipobj.style.left = curX + offsetxpoint + "px"
+
+            //same concept with the vertical position
+            if (bottomedge < tipobj.offsetHeight)
+                tipobj.style.top = ie ? ietruebody().scrollTop + event.clientY - tipobj.offsetHeight - offsetypoint + "px" : window.pageYOffset + e.clientY - tipobj.offsetHeight - offsetypoint + "px"
+            else
+                tipobj.style.top = curY + offsetypoint + "px"
+            tipobj.style.visibility = "visible"
+        }
+    }
+
+    function hideddrivetip() {
+        if (ns6 || ie) {
+            enabletip = false
+            tipobj.style.visibility = "hidden"
+            tipobj.style.left = "-1000px"
+            tipobj.style.backgroundColor = ''
+            tipobj.style.width = ''
+        }
+    }
+
+    document.onmousemove = positiontip;
+    document.onblur = function (ev) {
+        
+    }
+</script>
+
+<script type="text/javascript">
+        // initialize plugins
+        $(function () {
+            var tm = setTimeout(function () {
+                EduSoft.Web.UC.GioiThieu.GetHitCounter(function (ret) {
+                    if (ret.value) {
+                        var st = "00000000" + ret.value;
+                        st = st.substring(st.length - 9);
+                        var ltCount = document.getElementById("ltHitCounter");
+                        if (!ltCount) return;
+                        var tb = '<table cellSpacing="1" cellPadding="1" border="1" borderWidth="" borderColor="White" style="color:White;background-color:Black;border-color:White;"><TR>';
+                        for (i = 0; i < st.length; i++) {
+                            tb += '<TD align="middle">' + st.substring(i, i + 1) + '</TD>';
+                        }
+                        tb += '</TR></table>';
+                        ltCount.innerHTML = tb;
+                    }
+                });
+            }, 1000);
+
+            try {
+                $("ul.sf-menu").supersubs({
+                    minWidth: 13,
+                    maxWidth: 60,
+                    extraWidth: 5,
+                }).superfish();
+            } catch (ex) { }
+        });
+</script>
+
+<div class="navigate-base">
+    <table>
+        <tr>
+            <td align="left">
+                
+
+
+<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.3.min.js"></script>
+  <script src="//kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+  <script src="graph-js-sdk-web.js"></script>
+<script src="../Common/Login365_1.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+
+function MessUpdate(obj)
+{ 
+    alert(obj);
+}
+
+function ConfirmXemDiem(obj) {
+    if (confirm(obj)) {
+        self.location = "default.aspx?page=xemdiemthi";        
+    }
+}
+</script>
+
+
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td valign="top" style="background-image: url(App_Themes/Standard/Images/menuLogLeft.png)" width="324px" height="34px">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="icons"></div>
+                            </td>
+                            <td>
+                                <a id="ctl00_ContentPlaceHolder1_ctl00_ucDangNhap_lnkBtnQuenMK" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ctl00$ucDangNhap$lnkBtnQuenMK','')"><font face="Tahoma" color="Blue" size="2">Quên mật khẩu!</font></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="background-image: url(App_Themes/Standard/Images/loginGiua.png)" height="34px" width="480px">
+                    <table>
+                        <tr>
+                            <td width="95px" align="center">&nbsp;
+                        <span id="ctl00_ContentPlaceHolder1_ctl00_ucDangNhap_lblTenDangNhap" class="Label">Tên Đăng Nhập</span></td>
+                            <td align="left" width="100px">
+                                <input name="ctl00$ContentPlaceHolder1$ctl00$ucDangNhap$txtTaiKhoa" type="text" id="ctl00_ContentPlaceHolder1_ctl00_ucDangNhap_txtTaiKhoa" class="TextBox" /></td>
+                            <td width="100px" align="center">&nbsp;<span id="ctl00_ContentPlaceHolder1_ctl00_ucDangNhap_lblMatKhau" class="Label">Mật Khẩu</span></td>
+                            <td width="100px">
+                                <input name="ctl00$ContentPlaceHolder1$ctl00$ucDangNhap$txtMatKhau" type="password" id="ctl00_ContentPlaceHolder1_ctl00_ucDangNhap_txtMatKhau" class="TextBox" /></td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td valign="middle" style="background-image: url(App_Themes/Standard/Images/menuNavigateLogRight.png)" height="34px" width="90px">
+                    <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$ucDangNhap$btnDangNhap" value="Đăng Nhập" id="ctl00_ContentPlaceHolder1_ctl00_ucDangNhap_btnDangNhap" class="DefaultButton" class="defaultbnt" value="Đăng Nhập" />
+
+                   
+                </td>
+                <td valign="middle" style="background-image: url(App_Themes/Standard/Images/menuNavigateLogRight.png)" height="34px" width="100px">
+                     
+                </td>
+
+            </tr>
+
+        </table>
+         
+        
+    
+
+
+
+
+<script src="../Common/Login365.js"></script>
+<script language="javascript" type="text/javascript">
+
+    //Đăng ký sự kiện cho button Login365
+    $('#btnLogin365').attr('href', buildAuthUrl());
+
+</script>
+            </td>
+        </tr>
+        
+        <tr valign="top">
+            <td>
+                <table>
+                    <tr>
+                        <td style='display:none'  width ='0%'> 
+                        
+                        </td> <td>
+                        <div class="navigate-base">
+                            <div class="title-base">
+                                <div class="title">
+                                    <table>
+                                        <tr>
+                                            <td width="10px">
+                                                <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                            <td>
+                                                <span id="ctl00_ContentPlaceHolder1_ctl00_lblViTri0" class="Label">THÔNG BÁO</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+
+
+                            <table id="ctl00_ContentPlaceHolder1_ctl00_tbViTri0" class="classTable" border="0" width="100%">
+	<tr>
+		<td align="left"><font color="Blue"><a class='TextTitle' href='default.aspx?page=chitietthongtin&id=3'>Kế hoạch đăng ký môn học HK3 (Hè), 2018-2019 (đợt 3) <img style=' border:0'  src="http://dkmh.hitu.edu.vn/web/Upload/icon_moi.gif" alt="" /></a><span class='NgayTitle'> (07/05/2019)</span></font></td>
+	</tr><tr>
+		<td align="left"><span class='TextThongTin' style='text-align:left'><p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;&#xA;margin-left:0in;text-align:justify"><span style="font-family: Times New Roman;"><strong style="mso-bidi-font-weight:normal"><span style="color: #0000ff;">*&nbsp; </span></strong></span><span style="font-family: Times New Roman; color: #0000ff;"><strong style="mso-bidi-font-weight:normal"><span style="font-size:13.0pt">SV có đăng ký môn học HK3 (Hè), 2018-2019 sẽ <span style="text-decoration: underline;">không</span> được xét tốt nghiệp đợt tháng 7/2019</span></strong></span></p></span><div style='text-align:right' ><div class='ChiTiet'><img src='App_Themes/Standard/Images/arrow_r.gif' alt=''/> <a class='TextThongTin' href='default.aspx?page=chitietthongtin&id=3'>Xem Chi Tiết</a></div></div></td>
+	</tr><tr>
+		<td align="left"><table width='300px' style='text-align:left'><tr><td rowspan='2' width='15px'><img src='..//App_Themes/Standard/Images/images.jpg'
+                                    width='15px' alt=''/></td><td align='left' width='280px'> Bản tin cũ</td><td align='left'><span class='tatcabantin'></td></tr><tr><td colspan='2' class='kecham'></td></tr></table></td>
+	</tr><tr>
+		<td align="left"><img src='App_Themes/Standard/Images/Bull9.gif' alt=''/><a class='TextTitle' href='default.aspx?page=chitietthongtin&id=0'>Danh sách môn học bị hủy (không còn mở lớp) và môn học được dùng thay thế<br />... <span class='NgayTitle'>(20/04/2018)</span></a></td>
+	</tr><tr>
+		<td align="right"><span class='tatcabantin'><a href='default.aspx?page=danhsachthongtin&type=1'>Xem tất cả</a></span></td>
+	</tr>
+</table>
+                        </div>
+                        </td></tr><tr>
+
+                        
+                        <td style='display:none' >
+                        <div class="navigate-base">
+                            <div class="title-base">
+                                <div class="title">
+                                    <table>
+                                        <tr>
+                                            <td width="10px">
+                                                <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                            <td>
+                                                <span id="ctl00_ContentPlaceHolder1_ctl00_lblViTri1" class="Label">THÔNG TIN HỆ VỪA LÀM VỪA HỌC</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <table id="ctl00_ContentPlaceHolder1_ctl00_tbViTri1" class="classTable" border="0" width="100%">
+	<tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr>
+</table>
+                        </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table width="100%">
+                    <tr>
+                        <div id="ctl00_ContentPlaceHolder1_ctl00_pnlYahoo">
+	
+                            <td width="14%" valign="top">
+                                <table cellpadding='0' cellspacing='0'>
+                                    <tr>
+                                        <td>
+                                            <div class="navigate-base">
+                                                <table cellpadding='0' cellspacing='0'>
+                                                    <tr>
+                                                        <td align="left">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <div class="title-base">
+                                                    <div class="title">
+                                                        <table>
+
+                                                            <tr>
+
+                                                                <td width="10px">
+                                                                    <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                                                <td>
+                                                                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblLeft" class="Label">HỖ TRỢ ONLINE</span></td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+
+                                                
+                                                
+                                                
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            
+                                            <div id="ltHitCounter"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span id="ctl00_ContentPlaceHolder1_ctl00_lblSumGust" class="Label">Số đang truy cập: 239</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span id="ctl00_ContentPlaceHolder1_ctl00_lblSumInDay" class="Label"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span id="ctl00_ContentPlaceHolder1_ctl00_lblSumLogon" class="Label">Số đã đăng nhập:9</span>/500
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </td>
+                        
+</div>
+
+                        <td width="1px">
+                            </td> <td width='43%' valign='top'>
+                            <div class="navigate-base">
+                                <div class="title-base">
+                                    <div class="title">
+                                        <table>
+                                            <tr>
+                                                <td width="10px">
+                                                    <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                                <td>
+                                                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblViTri2" class="Label">THÔNG TIN CHUNG</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br />
+                                <table id="ctl00_ContentPlaceHolder1_ctl00_tbViTri2" class="classTable" border="0" style="text-align: left">
+	<tr>
+		<td align="left"><font color="Blue"><a class='TextTitle' href='default.aspx?page=chitietthongtin&id=1'>Hướng dẫn lấy lại password đăng nhập<br /></a><span class='NgayTitle'> (08/05/2018)</span></font></td>
+	</tr><tr>
+		<td><span class='TextThongTin' style='text-align:left'></span><div style='text-align:right' ><div class='ChiTiet'><img src='App_Themes/Standard/Images/arrow_r.gif' alt=''/> <a class='TextThongTin' href='default.aspx?page=chitietthongtin&id=1'>Xem Chi Tiết</a></div></div></td>
+	</tr><tr>
+		<td align="left"><table width='300px' style='text-align:left'><tr><td rowspan='2' width='15px'><img src='App_Themes/Standard/Images/images.jpg' width='15px' alt=''/></td><td align='left' width='280px'>Bản tin cũ</span></td><td align='left'></td></tr><tr><td colspan='2' class='kecham'></td></tr></table></td><td></td>
+	</tr><tr>
+		<td align="left"><img src='App_Themes/Standard/Images/Bull9.gif' alt=''/><a class='TextTitle' href='default.aspx?page=chitietthongtin&id=4'><a href="http://www.hitu.edu.vn/999-Huongdandangkymonhoconilne">Hướng dẫn đăng ký môn học online</a><br /><img style=' border:0'  src='./Images/new.gif' width='30px' height='30px' alt='Tin tức mới cập nhật'/>... (<span class='NgayTitle'>07/06/2019</span>)</a></td>
+	</tr><tr>
+
+	</tr><tr>
+		<td align="right"><span class='tatcabantin'><a href='default.aspx?page=danhsachthongtin&type=0'>Xem tất cả</a></span></td>
+	</tr>
+</table>
+                            </div>
+                        </td>
+                        <td width="1px">
+                            </td> <td width='43%' valign='top'>
+                            <div class="navigate-base">
+                                <div class="title-base">
+                                    <div class="title">
+                                        <table>
+                                            <tr>
+                                                <td width="10px">
+                                                    <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                                <td valign="top">
+                                                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblViTri3" class="Label">TIN TỨC VÀ SỰ KIỆN</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br />
+                                <table id="ctl00_ContentPlaceHolder1_ctl00_tbViTri3" class="classTable" border="0">
+	<tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr><tr>
+		<td align="right"><span class='tatcabantin'><a href='default.aspx?page=danhsachthongtin&type=2'>Xem tất cả</a></span></td>
+	</tr>
+</table>
+                            </div>
+                        </td>
+
+                        <div id="ctl00_ContentPlaceHolder1_ctl00_pnlWebLink">
+	
+                            <td width="1px">
+                                
+                            </td>
+                        
+</div>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table width="100%">
+                    <tr>
+                        <td width="2px">
+                            </td> <td  style='display:none'>
+                            <div class="navigate-base">
+                                <div class="title-base">
+                                    <div class="title">
+                                        <table>
+                                            <tr>
+                                                <td width="10px">
+                                                    <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                                <td>
+                                                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblViTri4" class="Label"> THONG BAO KHAC 1</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br />
+                                <table id="ctl00_ContentPlaceHolder1_ctl00_tbViTri4" class="classTable" border="0" width="100%">
+	<tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr>
+</table>
+                            </div>
+                        </td>
+
+                        <td width="1px">
+                            </td> <td  style='display:none'>
+                            <div class="navigate-base">
+                                <div class="title-base">
+                                    <div class="title">
+                                        <table>
+                                            <tr>
+                                                <td width="10px">
+                                                    <img src="App_Themes/Standard/Images/icon_04b.gif" /></td>
+                                                <td>
+                                                    <span id="ctl00_ContentPlaceHolder1_ctl00_lblViTri5" class="Label">THONG BAO KHAC 2</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br />
+                                <table id="ctl00_ContentPlaceHolder1_ctl00_tbViTri5" class="classTable" border="0" width="100%">
+	<tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr>
+</table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+
+    </table>
+</div>
+
+
+    
+
+
+             </td></tr><tr><td>
+                
+
+<style type="text/css">
+   
+    .style3
+    {
+        width: 70px;
+    }
+    .style4
+    {
+        width: 129px;
+    }
+    .style5
+    {
+        width: 1019px;
+    }
+   
+</style>
+
+<div class="footer">
+<table width="100%"><tr><td align="left" class="style5" >
+<img src="App_Themes/Standard/Images/icon_11c.gif" alt="" />
+<span class="LogoFooter"><span id="ctl00_Footer1_lblCompany" class="Label">Copyright ©2009 TRƯỜNG CAO ĐẲNG CÔNG THƯƠNG TP.HCM. Quản lý bởi Bộ Công Thương</span></span>
+</td>
+    
+        <td valign="top"  align="left" class="style4">
+        <img src="App_Themes/Standard/Images/iconHome.png" alt="" align="right"  />    
+        </td>
+        <td align="left" class="style3">
+        <a href="Default.aspx"><span id="ctl00_Footer1_lbltrangchu" class="Label">Trang Chủ</span></a>
+        </td>
+        
+        
+</tr>
+<tr>
+<td class="style5" >
+    <img src="App_Themes/Standard/Images/icon_11c.gif" alt="" /> 
+    <a href="http://www.edusoft.net.vn" target="_blank"><span id="ctl00_Footer1_lblCopyRight" class="Label">Thiết kế bởi cty Phần mềm Anh Quân</span></a>
+    
+    
+     
+</td>
+<td align="right" valign="top" class="style4"> 
+    <img src="App_Themes/Standard/Images/topTen.gif" width="15px" alt="" />
+    </td>
+    <td class="style3">
+    <a href="#Top" title="Go to top" style="text-decoration: none; font-family:Tahoma;font-size:8pt">
+    <span id="ctl00_Footer1_lbltop" class="Label">Đầu Trang</span>
+    </a>
+</td>
+<td align="right"><a href="Default.aspx?page=thongtinsp"><span id="ctl00_Footer1_lblAbout" class="Label">About</span></a></td>
+</tr>
+
+</table></div>
+  
+            </td></tr></table>
+        </div>
+     </div>
+
+       
+
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_ContentPlaceHolder1_ctl00_leftMenu_Data = new Object();
+ctl00_ContentPlaceHolder1_ctl00_leftMenu_Data.disappearAfter = 500;
+ctl00_ContentPlaceHolder1_ctl00_leftMenu_Data.horizontalOffset = 0;
+ctl00_ContentPlaceHolder1_ctl00_leftMenu_Data.verticalOffset = 0;
+//]]>
+</script>
+</form>
+</body>
+</html>
