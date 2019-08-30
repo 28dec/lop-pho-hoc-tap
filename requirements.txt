@@ -8,3 +8,4 @@ wkhtmltopdf-pack-ng==0.12.3.0
 bs4
 lxml
 mysql-connector
+sentry_sdk

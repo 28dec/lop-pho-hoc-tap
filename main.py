@@ -1,6 +1,7 @@
-import flask, qldt_schedule_creator, os, json, mysql.connector
+import flask, qldt_schedule_creator, os, json, mysql.connector, sentry_sdk
 import db_mysql
 from flask import Flask, request, jsonify
+sentry_sdk.init("https://44879f4e54ce466bbd807b5dd754f225@sentry.io/1527474")
 app = Flask(__name__)
 # db = db_mysql.MySQL()
 app.config['JSON_AS_ASCII'] = False
