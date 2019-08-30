@@ -182,6 +182,8 @@ def get_access_to_target_week(student_id):
 	viewstategenerator_pattern = r"id=\"__VIEWSTATEGENERATOR\".*\"(.*)\""
 	week_option_pattern = r"id=\"ctl00_ContentPlaceHolder1_ctl00_ddlTuan\".*\s*.*value=\"(.*)\""
 	rps = r.get('http://qldt.ptit.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id='+student_id)
+	print("Bo qua tinh nang get_access_to_target_week, qldt tra ve du lieu nao thi return luon du lieu do, de tang toc do reply")
+	return rps.content
 	with open('1430.html', 'wb') as f:
 		f.write(rps.content)
 	viewstate = re.search(viewstate_pattern, rps.text)
