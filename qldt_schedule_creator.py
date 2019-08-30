@@ -193,7 +193,7 @@ def get_access_to_target_week(student_id):
 	week_option = re.search(week_option_pattern, rps.text).group(1)
 	if viewstategenerator:
 		viewstategenerator = viewstategenerator.group(1)
-	NHHK = '20182'
+	NHHK = '20191'
 	print("NHHK = {}".format(NHHK))
 	payload = {
 		'__VIEWSTATE':viewstate,
