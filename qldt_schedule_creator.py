@@ -412,14 +412,15 @@ def main(msg, _GENERATE_IMAGE):
 	global student_id, img_url, GENERATE_IMAGE
 	GENERATE_IMAGE = _GENERATE_IMAGE
 	init()
-	scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+	# scriptDirectory = os.path.dirname(os.path.realpath(__file__))
 	msg = str(msg)
 	if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
 		student_id = msg.upper()
 	else:
 		return "MA SINH VIEN KHONG HOP LE", None
 	print("Nhan duoc yeu cau moi, code  -> {}".format(student_id))
-	if init_home_page() == SUCCESS:
+	# if init_home_page() == SUCCESS:
+	if SUCCESS == SUCCESS:
 		print("hello =))")
 		tkb = get_daily_schedule_from_server_response(get_access_to_target_week(student_id))
 		rps = schedule_list_to_string(tkb)
@@ -479,5 +480,5 @@ def get_examination_schedule_source(username, password):
 
 
 
-if __name__ == '__main__':
-	main()
+# if __name__ == '__main__':
+# 	main()
